@@ -1,21 +1,20 @@
-import { Reveal } from "./reveal";
+import { Reveal, TextReveal, StaggerChildren, StaggerItem } from "./reveal";
 import { TestimonialsCarousel } from "./testimonials-carousel";
-
-const unsplashImage = (id: string, width = 1600) =>
-  `https://unsplash.com/photos/${id}/download?force=true&w=${width}`;
+import { MobileNav } from "./mobile-nav";
+import { PremiumMedia } from "./premium-media";
 
 const photos = {
-  heroStillLife: unsplashImage("eZ0-0K1Bu4o", 1800),
-  herbJarMacro: unsplashImage("5qr75VKtikc", 1600),
-  leafFlatlay: unsplashImage("cU8ubgWFaMY", 1400),
-  ceramics: unsplashImage("Ms542g2coSg", 1600),
-  perfumeSheet: unsplashImage("ts0-pH6E4YA", 1400),
-  perfumeBottle: unsplashImage("Qvazzq5rPg4", 1400),
-  plantShadow: unsplashImage("oNGcNhm6e7c", 1400),
-  leafShadowWall: unsplashImage("SFukLke3WVI", 1400),
-  windowPlant: unsplashImage("xny3AP6kss4", 1400),
-  afternoonRoom: unsplashImage("Y6eDK4YdENY", 1400),
-  shadowLeavesTan: unsplashImage("mzBTIkHinRU", 1400),
+  heroStillLife: "/assets/curated/hero-still-life.jpg",
+  herbJarMacro: "/assets/curated/herb-jar-macro.jpg",
+  leafFlatlay: "/assets/curated/leaf-flatlay.jpg",
+  ceramics: "/assets/curated/ceramics.jpg",
+  perfumeSheet: "/assets/curated/perfume-sheet.jpg",
+  perfumeBottle: "/assets/curated/perfume-bottle.jpg",
+  plantShadow: "/assets/curated/plant-shadow.jpg",
+  leafShadowWall: "/assets/curated/leaf-shadow-wall.jpg",
+  windowPlant: "/assets/curated/window-plant.jpg",
+  afternoonRoom: "/assets/curated/afternoon-room.jpg",
+  shadowLeavesTan: "/assets/curated/shadow-leaves-tan.jpg",
 } as const;
 
 const navItems = [
@@ -33,19 +32,19 @@ const principles = [
     index: "01",
     title: "Quiet luxury",
     copy:
-      "Fewer elements, richer materials, and typography that carries the emotion without shouting for attention.",
+      "We keep the gesture restrained so texture, scent, and light can speak with confidence.",
   },
   {
     index: "02",
     title: "Botanical depth",
     copy:
-      "Every section should feel scented by plants, with leaves, shadows, vessels, and paper textures implied throughout.",
+      "Every formula begins in the character of a plant, then opens into mood, color, and ritual.",
   },
   {
     index: "03",
-    title: "Flowing presentation",
+    title: "Flowing ritual",
     copy:
-      "The story unfolds in chapters, so one section leads naturally into the next instead of feeling like stacked content blocks.",
+      "Our world unfolds in measured chapters so each moment leads naturally into the next.",
   },
 ] as const;
 
@@ -55,28 +54,28 @@ const ingredients = [
     title: "Tulsi",
     photo: photos.heroStillLife,
     copy:
-      "Peppery brightness for clarity and calm. It brings lift to the palette and a sense of clean morning air.",
+      "Green, peppery, and bright. Tulsi brings clarity to the opening notes and a feeling of morning air.",
   },
   {
     index: "02",
     title: "Vetiver",
     photo: photos.herbJarMacro,
     copy:
-      "Smoky roots and grounded warmth. This note informs the deeper moss and bark tones across the page.",
+      "Earth-rooted and quietly smoky. Vetiver grounds the collection with depth, bark, and soft shadow.",
   },
   {
     index: "03",
     title: "Neroli",
     photo: photos.leafFlatlay,
     copy:
-      "Soft radiance and floral light. It adds the creamy contrast that keeps the brand from becoming too heavy.",
+      "Luminous and floral. Neroli lifts the heart with light, softness, and a cream-toned glow.",
   },
   {
     index: "04",
     title: "Ashwagandha",
     photo: photos.shadowLeavesTan,
     copy:
-      "Restorative depth for evening rituals. It shapes the slower, more intimate scenes later in the narrative.",
+      "Restorative and velvety. Ashwagandha shapes the slower evening ritual and the deeper warmth beneath it.",
   },
 ] as const;
 
@@ -86,7 +85,7 @@ const products = [
     title: "Signature blends",
     photo: photos.perfumeBottle,
     copy:
-      "Herbal oils, teas, and room fragrances designed to anchor daily rituals in quiet confidence.",
+      "Botanical oils, room fragrances, and steeping blends composed for daily ritual and lasting calm.",
     large: true,
   },
   {
@@ -94,7 +93,7 @@ const products = [
     title: "Private consultations",
     photo: photos.windowPlant,
     copy:
-      "Guided sessions that translate lifestyle, scent memory, and mood into a more personal botanical routine.",
+      "Personal sessions that translate memory, routine, and atmosphere into a botanical practice of your own.",
     large: false,
   },
   {
@@ -102,7 +101,7 @@ const products = [
     title: "Spatial styling",
     photo: photos.ceramics,
     copy:
-      "Visual and sensory direction for boutiques, retreats, and intimate wellness experiences.",
+      "Sensory direction for boutiques, retreats, and rooms that want to feel restorative from the first step in.",
     large: false,
   },
 ] as const;
@@ -111,58 +110,51 @@ const galleryItems = [
   {
     className: "gallery-card gallery-card--tall",
     sceneClass: "gallery-scene gallery-scene--leaf",
-    photo: photos.leafFlatlay,
-    tag: "Botanical still life",
-    caption: "Leaves, paper, stone, and silence.",
-  },
-  {
-    className: "gallery-card",
-    sceneClass: "gallery-scene gallery-scene--vessels",
-    photo: photos.ceramics,
-    tag: "Ceramics",
-    caption: "Ceramics warmed by afternoon light.",
-  },
-  {
-    className: "gallery-card",
-    sceneClass: "gallery-scene gallery-scene--shelf",
-    photo: photos.plantShadow,
-    tag: "Light study",
-    caption: "Texture studies for packaging and room scent.",
+    photo: photos.heroStillLife,
+    tag: "Hero still life",
+    caption: "The house palette begins in leaves, clay, paper, and softened afternoon light.",
   },
   {
     className: "gallery-card gallery-card--wide",
     sceneClass: "gallery-scene gallery-scene--editorial",
     photo: photos.perfumeBottle,
-    tag: "Editorial feature",
-    caption: "Product storytelling staged like a magazine spread.",
-  },
-  {
-    className: "gallery-card",
-    sceneClass: "gallery-scene gallery-scene--shadow",
-    photo: photos.leafShadowWall,
-    tag: "Shadow play",
-    caption: "Plant shadows turning plain surfaces into atmosphere.",
-  },
-  {
-    className: "gallery-card",
-    sceneClass: "gallery-scene gallery-scene--window",
-    photo: photos.afternoonRoom,
-    tag: "Room mood",
-    caption: "Window light and quiet corners for the closing mood.",
+    tag: "Cinematic spread",
+    caption: "The signature blend appears in a wider frame like a printed editorial opening.",
   },
   {
     className: "gallery-card gallery-card--portrait",
     sceneClass: "gallery-scene gallery-scene--portrait",
     photo: photos.perfumeSheet,
     tag: "Object study",
-    caption: "Soft linen, product glow, and a slower still-life rhythm.",
+    caption: "A narrow study of linen, vessel, and surface glow.",
+  },
+  {
+    className: "gallery-card",
+    sceneClass: "gallery-scene gallery-scene--vessels",
+    photo: photos.ceramics,
+    tag: "Ceramics",
+    caption: "Ceramics held in warm neutrals and quiet shadow.",
+  },
+  {
+    className: "gallery-card",
+    sceneClass: "gallery-scene gallery-scene--shadow",
+    photo: photos.leafShadowWall,
+    tag: "Detail crop",
+    caption: "Leaf silhouettes soften the room into atmosphere.",
+  },
+  {
+    className: "gallery-card",
+    sceneClass: "gallery-scene gallery-scene--window",
+    photo: photos.afternoonRoom,
+    tag: "Closing mood",
+    caption: "A final room note of window light, calm air, and negative space.",
   },
   {
     className: "gallery-card",
     sceneClass: "gallery-scene gallery-scene--detail",
-    photo: photos.heroStillLife,
-    tag: "Detail crop",
-    caption: "Close botanical textures give the section more depth.",
+    photo: photos.plantShadow,
+    tag: "Light study",
+    caption: "Shadow across surface becomes part of the composition.",
   },
 ] as const;
 
@@ -193,12 +185,15 @@ export default function Page() {
       <div className="page-noise" aria-hidden="true" />
       <div className="page-glow page-glow--left" aria-hidden="true" />
       <div className="page-glow page-glow--right" aria-hidden="true" />
+      <div className="page-glow page-glow--center" aria-hidden="true" />
       <div className="ambient-loop ambient-loop--light" aria-hidden="true" />
       <div className="ambient-loop ambient-loop--botanical" aria-hidden="true" />
       <div className="floating-particles" aria-hidden="true" />
 
+      {/* ─── TOPBAR ─── */}
       <header className="topbar section-shell" data-reveal>
         <a className="brandmark" href="#hero">
+          <span className="brandmark__icon" aria-hidden="true">✦</span>
           Herbs Atelier
         </a>
         <nav className="topnav" aria-label="Primary">
@@ -208,58 +203,71 @@ export default function Page() {
             </a>
           ))}
         </nav>
+        <MobileNav />
       </header>
 
       <main>
+        {/* ─── HERO ─── */}
         <section className="hero section-shell" id="hero">
           <div className="hero-copy">
             <Reveal delay={0.04}>
-              <p className="eyebrow">Luxury herbal brand story</p>
+              <p className="eyebrow">
+                <span className="eyebrow__dot" aria-hidden="true" />
+                Luxury herbal brand story
+              </p>
             </Reveal>
             <Reveal delay={0.1}>
-              <h1>Herbal rituals shaped like quiet cinema.</h1>
+              <TextReveal
+                text="Herbal rituals shaped like quiet cinema."
+                tag="h1"
+                delay={0.12}
+              />
             </Reveal>
             <Reveal delay={0.16}>
               <p className="hero-lede">
-                Herbs Atelier turns plant intelligence into sensorial products,
-                restorative consultations, and serene spaces that feel composed
-                rather than decorated.
+                Herbs Atelier composes botanical fragrance, restorative blends,
+                and quietly sensorial spaces for people who want wellness to
+                feel intimate, cultivated, and beautifully lived in.
               </p>
             </Reveal>
             <Reveal delay={0.22}>
               <div className="button-row">
                 <a className="btn btn--primary" href="#products">
-                  Explore offerings
+                  <span className="btn__text">Explore offerings</span>
+                  <span className="btn__shine" aria-hidden="true" />
                 </a>
                 <a className="btn btn--ghost" href="#contact">
-                  Book a consultation
+                  <span className="btn__text">Book a consultation</span>
                 </a>
               </div>
             </Reveal>
             <Reveal delay={0.28}>
               <dl className="hero-metrics">
-                <div>
+                <div className="hero-metric">
                   <dt>Story</dt>
                   <dd>From wild harvest to intimate ritual</dd>
                 </div>
-                <div>
+                <div className="hero-metric">
                   <dt>Focus</dt>
-                  <dd>Botanicals, stillness, and modern care</dd>
+                  <dd>Botanicals, stillness, and atmospheric care</dd>
                 </div>
-                <div>
+                <div className="hero-metric">
                   <dt>Approach</dt>
-                  <dd>Editorial presentation with a warm pulse</dd>
+                  <dd>Fragrance, ritual, and rooms in balance</dd>
                 </div>
               </dl>
             </Reveal>
           </div>
 
           <div className="hero-composition" aria-hidden="true">
-            <div
+            <PremiumMedia
               className="hero-photo-panel"
-              style={{
-                backgroundImage: `linear-gradient(rgba(245, 238, 228, 0.08), rgba(245, 238, 228, 0.08)), url("${photos.heroStillLife}")`,
-              }}
+              src={photos.heroStillLife}
+              alt="Botanical still life with herbs, ceramic vessels, and warm natural light."
+              ratio="hero"
+              priority
+              quality={84}
+              sizes="(max-width: 1080px) 100vw, 42vw"
             />
             <div className="hero-depth hero-depth--one" data-mouse-depth="18" />
             <div className="hero-depth hero-depth--two" data-mouse-depth="-12" />
@@ -277,8 +285,8 @@ export default function Page() {
               <span className="card-kicker">Edition I</span>
               <h2>Rooted in fragrance, light, and leaves.</h2>
               <p>
-                A brand world for people who want wellness to feel beautifully
-                composed.
+                A quieter house of herbs where ritual is styled with warmth,
+                restraint, and natural depth.
               </p>
               <div className="leaf-cluster leaf-cluster--cover">
                 <span className="leaf" />
@@ -319,22 +327,28 @@ export default function Page() {
             >
               <span className="mini-label">Signature mood</span>
               <p>
-                Moss green, clay neutrals, luminous creams, and soft botanical
-                forms held in calm motion.
+                Moss greens, clay neutrals, luminous creams, and the hush of
+                leaf-shadow moving across paper.
               </p>
             </article>
 
-            <div
+            <PremiumMedia
               className="hero-photo-chip hero-photo-chip--shadow"
               data-parallax="0.06"
               data-mouse-depth="-10"
-              style={{ backgroundImage: `url("${photos.plantShadow}")` }}
+              src={photos.plantShadow}
+              alt=""
+              ratio="portrait"
+              sizes="(max-width: 800px) 120px, 132px"
             />
-            <div
+            <PremiumMedia
               className="hero-photo-chip hero-photo-chip--bottle"
               data-parallax="0.09"
               data-mouse-depth="8"
-              style={{ backgroundImage: `url("${photos.perfumeSheet}")` }}
+              src={photos.perfumeSheet}
+              alt=""
+              ratio="portrait"
+              sizes="(max-width: 800px) 110px, 120px"
             />
 
             <div className="hero-orb hero-orb--one" />
@@ -342,7 +356,30 @@ export default function Page() {
           </div>
         </section>
 
-        <section className="story-section section-shell" id="about">
+        {/* ─── MARQUEE ─── */}
+        <div className="marquee-strip" aria-hidden="true">
+          <div className="marquee-track">
+            {[...Array(2)].map((_, i) => (
+              <div className="marquee-content" key={i}>
+                <span>Botanical elegance</span>
+                <span className="marquee-dot">✦</span>
+                <span>Quiet luxury</span>
+                <span className="marquee-dot">✦</span>
+                <span>Herbal rituals</span>
+                <span className="marquee-dot">✦</span>
+                <span>Sensorial depth</span>
+                <span className="marquee-dot">✦</span>
+                <span>Rooted in nature</span>
+                <span className="marquee-dot">✦</span>
+                <span>Composed beauty</span>
+                <span className="marquee-dot">✦</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ─── ABOUT ─── */}
+        <section className="story-section story-section--split section-shell" id="about">
           <div className="section-divider" aria-hidden="true">
             <span />
             <span className="section-divider__leaf" />
@@ -350,89 +387,99 @@ export default function Page() {
           </div>
           <Reveal className="section-heading">
             <div data-reveal>
-              <p className="eyebrow">About</p>
-              <h2>A house of herbs designed as an elegant invitation.</h2>
+              <p className="eyebrow">
+                <span className="eyebrow__dot" aria-hidden="true" />
+                About
+              </p>
+              <TextReveal
+                text="A house of herbs designed as an elegant invitation."
+                delay={0.1}
+              />
               <p className="section-copy">
-                This brand story starts in a quiet studio where vessels, leaves,
-                oils, and paper references are arranged like a living still
-                life. Every choice should feel tactile, intentional, and softly
-                luxurious.
+                Herbs Atelier began as a studio practice in arranging plants,
+                vessels, oils, and paper until they felt like a complete
+                atmosphere. What emerged is a house devoted to ritual beauty,
+                botanical intelligence, and rooms that exhale softly.
               </p>
             </div>
           </Reveal>
 
-          <div className="about-grid">
-            <article
-              className="editorial-card editorial-card--statement"
-              data-reveal
-              data-panel-slide
-            >
-              <span className="panel-index">01</span>
-              <span className="framed-tag">Studio note</span>
-              <p className="feature-quote">
-                “Herbs Atelier is not only a wellness label. It is a slower way
-                of entering the room.”
-              </p>
-              <p className="support-copy">
-                The website should feel like that first inhale: layered, calm,
-                textured, and deeply considered.
-              </p>
-            </article>
-
-            <article
-              className="editorial-card editorial-card--studio"
-              data-reveal
-              data-panel-slide
-            >
-              <div
-                className="card-scene card-scene--studio"
-                style={{
-                  backgroundImage: `linear-gradient(140deg, rgba(86, 102, 74, 0.66) 0%, rgba(100, 115, 84, 0.6) 48%, rgba(191, 151, 118, 0.44) 48%, rgba(191, 151, 118, 0.52) 100%), url("${photos.ceramics}")`,
-                }}
+          <StaggerChildren className="about-grid" stagger={0.12}>
+            <StaggerItem>
+              <article
+                className="editorial-card editorial-card--statement"
+                data-panel-slide
               >
-                <div className="scene-arch" />
-                <div className="scene-vessel scene-vessel--tall" />
-                <div className="scene-vessel scene-vessel--small" />
-                <div className="leaf-cluster leaf-cluster--studio">
-                  <span className="leaf" />
-                  <span className="leaf" />
-                  <span className="leaf" />
-                </div>
-              </div>
-              <div className="card-copy">
-                <span className="framed-tag">Composition</span>
-                <h3>Editorial stillness</h3>
-                <p>
-                  Build every section like a styled spread, with clear focal
-                  points, layered depth, and generous negative space.
+                <span className="panel-index">01</span>
+                <span className="framed-tag">Origin</span>
+                <p className="feature-quote">
+                  "We began by styling rituals the way others style a room:
+                  patiently, materially, and with light in mind."
                 </p>
-              </div>
-            </article>
+                <p className="support-copy">
+                  Every object, blend, and fragrance is composed to slow the
+                  pace of entry and make care feel more ceremonial.
+                </p>
+              </article>
+            </StaggerItem>
 
-            <article
-              className="editorial-card editorial-card--note"
-              data-reveal
-              data-panel-slide
-            >
-              <span className="panel-index">02</span>
-              <span className="framed-tag">Material direction</span>
-              <div
-                className="editorial-card__thumb"
-                aria-hidden="true"
-                style={{
-                  backgroundImage: `linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.06)), url("${photos.windowPlant}")`,
-                }}
-              />
-              <p>
-                Large image fields should breathe beside compact text cards, so
-                the eye moves slowly through the page instead of scanning it as
-                a normal website grid.
-              </p>
-            </article>
-          </div>
+            <StaggerItem>
+              <article
+                className="editorial-card editorial-card--studio"
+                data-panel-slide
+              >
+                <div
+                  className="card-scene card-scene--studio"
+                  style={{
+                    backgroundImage: `linear-gradient(140deg, rgba(86, 102, 74, 0.66) 0%, rgba(100, 115, 84, 0.6) 48%, rgba(191, 151, 118, 0.44) 48%, rgba(191, 151, 118, 0.52) 100%), url("${photos.ceramics}")`,
+                  }}
+                >
+                  <div className="scene-arch" />
+                  <div className="scene-vessel scene-vessel--tall" />
+                  <div className="scene-vessel scene-vessel--small" />
+                  <div className="leaf-cluster leaf-cluster--studio">
+                    <span className="leaf" />
+                    <span className="leaf" />
+                    <span className="leaf" />
+                  </div>
+                </div>
+                <div className="card-copy">
+                  <span className="framed-tag">Composition</span>
+                  <h3>Editorial stillness</h3>
+                  <p>
+                    Our visual language is shaped by still-life composition:
+                    clear focal points, generous negative space, and materials
+                    that invite a second look.
+                  </p>
+                </div>
+              </article>
+            </StaggerItem>
+
+            <StaggerItem>
+              <article
+                className="editorial-card editorial-card--note"
+                data-panel-slide
+              >
+                <span className="panel-index">02</span>
+                <span className="framed-tag">House note</span>
+                <PremiumMedia
+                  className="editorial-card__thumb"
+                  src={photos.windowPlant}
+                  alt=""
+                  ratio="landscape"
+                  sizes="(max-width: 800px) 100vw, 240px"
+                />
+                <p>
+                  We favour slower pacing over excess. Images are given room to
+                  breathe, and words arrive as measured notes rather than noise.
+                </p>
+              </article>
+            </StaggerItem>
+          </StaggerChildren>
         </section>
 
-        <section className="story-section section-shell" id="philosophy">
+        {/* ─── PHILOSOPHY ─── */}
+        <section className="story-section story-section--text-led section-shell" id="philosophy">
           <div className="section-divider" aria-hidden="true">
             <span />
             <span className="section-divider__leaf" />
@@ -440,12 +487,18 @@ export default function Page() {
           </div>
           <Reveal className="section-heading">
             <div data-reveal>
-              <p className="eyebrow">Philosophy</p>
-              <h2>Three principles guide the entire experience.</h2>
+              <p className="eyebrow">
+                <span className="eyebrow__dot" aria-hidden="true" />
+                Philosophy
+              </p>
+              <TextReveal
+                text="Three principles guide the entire experience."
+                delay={0.1}
+              />
               <p className="section-copy">
-                The site should move like an expensive presentation transformed
-                into a living page: calm transitions, sculpted layouts, and
-                details that reward a slower scroll.
+                Our philosophy is simple: care should feel grounded, beautiful,
+                and unforced. The house moves in calm gestures, natural texture,
+                and a sense of quiet abundance.
               </p>
             </div>
           </Reveal>
@@ -466,34 +519,36 @@ export default function Page() {
                 }}
               />
             </div>
-            <div className="philosophy-grid">
+            <StaggerChildren className="philosophy-grid" stagger={0.1}>
               {principles.map((item) => (
-                <article
-                  className="principle-card"
-                  data-reveal
-                  data-panel-slide
-                  key={item.index}
-                >
-                  <span className="panel-index">{item.index}</span>
-                  <h3>{item.title}</h3>
-                  <p>{item.copy}</p>
-                </article>
+                <StaggerItem key={item.index}>
+                  <article
+                    className="principle-card"
+                    data-panel-slide
+                  >
+                    <span className="panel-index">{item.index}</span>
+                    <h3>{item.title}</h3>
+                    <p>{item.copy}</p>
+                  </article>
+                </StaggerItem>
               ))}
-              <article
-                className="principle-card principle-card--quote"
-                data-reveal
-                data-panel-slide
-              >
-                <span className="framed-tag">Editorial rule</span>
-                <p className="principle-quote">
-                  Let silence do part of the storytelling.
-                </p>
-              </article>
-            </div>
+              <StaggerItem>
+                <article
+                  className="principle-card principle-card--quote"
+                  data-panel-slide
+                >
+                  <span className="framed-tag">Editorial rule</span>
+                  <p className="principle-quote">
+                    Let stillness carry part of the ritual.
+                  </p>
+                </article>
+              </StaggerItem>
+            </StaggerChildren>
           </div>
         </section>
 
-        <section className="story-section section-shell" id="ingredients">
+        {/* ─── INGREDIENTS ─── */}
+        <section className="story-section story-section--image-led section-shell" id="ingredients">
           <div className="section-divider" aria-hidden="true">
             <span />
             <span className="section-divider__leaf" />
@@ -502,53 +557,64 @@ export default function Page() {
           <div className="ingredients-shell">
             <Reveal className="section-heading">
               <div data-reveal>
-                <p className="eyebrow">Ingredients</p>
-                <h2>The material palette begins with plants that hold emotion.</h2>
+                <p className="eyebrow">
+                  <span className="eyebrow__dot" aria-hidden="true" />
+                  Ingredients
+                </p>
+                <TextReveal
+                  text="The material palette begins with plants that hold emotion."
+                  delay={0.1}
+                />
                 <p className="section-copy">
-                  Ingredient storytelling turns the brand from pretty to
-                  persuasive. These hero botanicals shape the tone, color, and
-                  sensory profile of the entire site.
+                  Each formula begins with a plant chosen not only for benefit,
+                  but for character. Together these botanicals define the tone,
+                  scent memory, and emotional temperature of the collection.
                 </p>
               </div>
             </Reveal>
 
-            <div className="ingredient-grid">
+            <StaggerChildren className="ingredient-grid" stagger={0.1}>
               {ingredients.map((item) => (
-                <article
-                  className="ingredient-card"
-                  data-reveal
-                  data-panel-slide
-                  key={item.index}
-                  style={{
-                    backgroundImage: `linear-gradient(155deg, rgba(86, 99, 72, 0.78), rgba(88, 72, 57, 0.54)), url("${item.photo}")`,
-                  }}
-                >
-                  <span className="panel-index">{item.index}</span>
-                  <h3>{item.title}</h3>
-                  <p>{item.copy}</p>
-                </article>
+                <StaggerItem key={item.index}>
+                  <article
+                    className="ingredient-card"
+                    data-panel-slide
+                    style={{
+                      backgroundImage: `linear-gradient(155deg, rgba(86, 99, 72, 0.78), rgba(88, 72, 57, 0.54)), url("${item.photo}")`,
+                    }}
+                    >
+                    <span className="panel-index">{item.index}</span>
+                    <h3>{item.title}</h3>
+                    <p>{item.copy}</p>
+                  </article>
+                </StaggerItem>
               ))}
-              <article className="ingredient-feature" data-reveal data-panel-slide>
-                <div
-                  className="ingredient-feature__image"
-                  style={{
-                    backgroundImage: `linear-gradient(rgba(255, 250, 243, 0.08), rgba(255, 250, 243, 0.08)), url("${photos.herbJarMacro}")`,
-                  }}
-                />
-                <div className="ingredient-feature__copy">
-                  <span className="framed-tag">Palette study</span>
-                  <h3>Each botanical changes the room around it.</h3>
-                  <p>
-                    Ingredients should feel spatial, almost cinematic, with one
-                    anchored composition card balancing the text-driven list.
-                  </p>
-                </div>
-              </article>
-            </div>
+              <StaggerItem>
+                <article className="ingredient-feature" data-panel-slide>
+                  <PremiumMedia
+                    className="ingredient-feature__image"
+                    src={photos.herbJarMacro}
+                    alt="Close-up herb and vessel study used for the ingredient palette."
+                    ratio="hero"
+                    sizes="(max-width: 1080px) 100vw, 36vw"
+                  />
+                  <div className="ingredient-feature__copy">
+                    <span className="framed-tag">Palette study</span>
+                    <h3>Each botanical changes the room around it.</h3>
+                    <p>
+                      We think of ingredients spatially. A root can deepen the
+                      room, a flower can lift its air, and a leaf can sharpen
+                      the edge of calm.
+                    </p>
+                  </div>
+                </article>
+              </StaggerItem>
+            </StaggerChildren>
           </div>
         </section>
 
-        <section className="story-section section-shell" id="ritual-story">
+        {/* ─── RITUAL STORY ─── */}
+        <section className="story-section story-section--cinematic section-shell" id="ritual-story">
           <div className="section-divider" aria-hidden="true">
             <span />
             <span className="section-divider__leaf" />
@@ -556,8 +622,14 @@ export default function Page() {
           </div>
           <Reveal className="section-heading">
             <div data-reveal>
-              <p className="eyebrow">Signature Scene</p>
-              <h2>A ritual story told through pinned botanical layers.</h2>
+              <p className="eyebrow">
+                <span className="eyebrow__dot" aria-hidden="true" />
+                Signature Scene
+              </p>
+              <TextReveal
+                text="A ritual story told through pinned botanical layers."
+                delay={0.1}
+              />
               <p className="section-copy">
                 One memorable interaction should feel like the heart of the
                 brand. This chapter pins the page and lets vessels, leaves,
@@ -621,7 +693,8 @@ export default function Page() {
           </div>
         </section>
 
-        <section className="story-section section-shell" id="products">
+        {/* ─── PRODUCTS ─── */}
+        <section className="story-section story-section--split section-shell" id="products">
           <div className="section-divider" aria-hidden="true">
             <span />
             <span className="section-divider__leaf" />
@@ -629,51 +702,98 @@ export default function Page() {
           </div>
           <Reveal className="section-heading">
             <div data-reveal>
-              <p className="eyebrow">Products &amp; Services</p>
-              <h2>Offerings presented as chapters of a complete ritual life.</h2>
+              <p className="eyebrow">
+                <span className="eyebrow__dot" aria-hidden="true" />
+                Products &amp; Services
+              </p>
+              <TextReveal
+                text="Offerings presented as chapters of a complete ritual life."
+                delay={0.1}
+              />
               <p className="section-copy">
-                Instead of listing services in a plain grid, present them like a
-                curated collection with clear hierarchy and a strong sense of
-                mood.
+                Our offerings are designed to live together: what is worn on the
+                skin, steeped into the evening, and felt in the room all belong
+                to one continuous ritual language.
               </p>
             </div>
           </Reveal>
 
-          <div className="product-grid">
+          <StaggerChildren className="product-grid" stagger={0.12}>
             {products.map((item) => (
-              <article
-                className={`product-card${item.large ? " product-card--large" : ""}`}
-                data-reveal
-                data-panel-slide
-                key={item.index}
-              >
-                <div
-                  className="product-card__media"
-                  style={{
-                    backgroundImage: `linear-gradient(160deg, rgba(73, 85, 61, 0.18), rgba(255, 255, 255, 0.03)), url("${item.photo}")`,
-                  }}
-                />
-                <span className="panel-index">{item.index}</span>
-                <h3>{item.title}</h3>
-                <p>{item.copy}</p>
-              </article>
+              <StaggerItem key={item.index}>
+                <article
+                  className={`product-card${item.large ? " product-card--large" : ""}`}
+                  data-panel-slide
+                >
+                  <PremiumMedia
+                    className="product-card__media"
+                    src={item.photo}
+                    alt={`${item.title} visual still life`}
+                    ratio={item.large ? "hero" : "landscape"}
+                    sizes="(max-width: 1080px) 100vw, 28vw"
+                  />
+                  <span className="panel-index">{item.index}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.copy}</p>
+                </article>
+              </StaggerItem>
             ))}
-            <article className="product-card product-card--frame" data-reveal data-panel-slide>
-              <span className="framed-tag">Presentation</span>
-              <p className="product-frame-copy">
-                Services and products should sit inside a composed spread, with
-                one dramatic anchor and supporting side panels.
-              </p>
-              <div className="product-micro-gallery" aria-hidden="true">
-                <span style={{ backgroundImage: `url("${photos.perfumeSheet}")` }} />
-                <span style={{ backgroundImage: `url("${photos.ceramics}")` }} />
-                <span style={{ backgroundImage: `url("${photos.plantShadow}")` }} />
-              </div>
-            </article>
-          </div>
+            <StaggerItem>
+              <article className="product-card product-card--frame" data-panel-slide>
+                <span className="framed-tag">Presentation</span>
+                <p className="product-frame-copy">
+                  Blends, consultation, and spatial styling are composed as one
+                  house signature rather than separate services.
+                </p>
+                <div className="product-micro-gallery" aria-hidden="true">
+                  <PremiumMedia
+                    src={photos.perfumeSheet}
+                    alt=""
+                    ratio="thumb"
+                    sizes="120px"
+                  />
+                  <PremiumMedia
+                    src={photos.ceramics}
+                    alt=""
+                    ratio="thumb"
+                    sizes="120px"
+                  />
+                  <PremiumMedia
+                    src={photos.plantShadow}
+                    alt=""
+                    ratio="thumb"
+                    sizes="120px"
+                  />
+                </div>
+              </article>
+            </StaggerItem>
+          </StaggerChildren>
         </section>
 
-        <section className="story-section section-shell" id="gallery">
+        {/* ─── SECOND MARQUEE ─── */}
+        <div className="marquee-strip marquee-strip--reverse" aria-hidden="true">
+          <div className="marquee-track marquee-track--reverse">
+            {[...Array(2)].map((_, i) => (
+              <div className="marquee-content" key={i}>
+                <span>Tulsi</span>
+                <span className="marquee-dot">◆</span>
+                <span>Vetiver</span>
+                <span className="marquee-dot">◆</span>
+                <span>Neroli</span>
+                <span className="marquee-dot">◆</span>
+                <span>Ashwagandha</span>
+                <span className="marquee-dot">◆</span>
+                <span>Cedarwood</span>
+                <span className="marquee-dot">◆</span>
+                <span>Sandalwood</span>
+                <span className="marquee-dot">◆</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ─── GALLERY ─── */}
+        <section className="story-section story-section--image-led section-shell" id="gallery">
           <div className="section-divider" aria-hidden="true">
             <span />
             <span className="section-divider__leaf" />
@@ -681,56 +801,81 @@ export default function Page() {
           </div>
           <Reveal className="section-heading">
             <div data-reveal>
-              <p className="eyebrow">Gallery</p>
-              <h2>A collage of objects, textures, and ritual moments.</h2>
+              <p className="eyebrow">
+                <span className="eyebrow__dot" aria-hidden="true" />
+                Gallery
+              </p>
+              <TextReveal
+                text="An editorial archive of still life, shadow, and ritual."
+                delay={0.1}
+              />
               <p className="section-copy">
-                This section gives the site its visual release: a curated mosaic
-                that feels like torn pages from a refined herbal journal.
+                Gathered like pages from the atelier journal, these images move
+                from one dominant still life into quieter object studies, wider
+                room notes, and smaller details that let the atmosphere linger.
               </p>
             </div>
           </Reveal>
 
-          <div className="gallery-grid">
+          <StaggerChildren className="gallery-grid" stagger={0.08}>
             {galleryItems.map((item) => (
-              <figure className={item.className} data-reveal data-panel-slide key={item.caption}>
-                <div
-                  className={item.sceneClass}
-                  style={{
-                    backgroundImage: `linear-gradient(150deg, rgba(92, 104, 77, 0.3), rgba(215, 199, 182, 0.16)), url("${item.photo}")`,
-                  }}
-                >
-                  <span className="gallery-scene__tag">{item.tag}</span>
-                </div>
-                <figcaption>
-                  <span className="gallery-card__index">
-                    {String(galleryItems.indexOf(item) + 1).padStart(2, "0")}
-                  </span>
-                  <span>{item.caption}</span>
-                </figcaption>
-              </figure>
+              <StaggerItem key={item.caption}>
+                <figure className={item.className} data-panel-slide>
+                  <PremiumMedia
+                    className={item.sceneClass}
+                    src={item.photo}
+                    alt={item.caption}
+                    ratio={
+                      item.className.includes("gallery-card--tall")
+                        ? "hero"
+                        : item.className.includes("gallery-card--portrait")
+                          ? "portrait"
+                          : item.className.includes("gallery-card--wide")
+                            ? "wide"
+                            : "landscape"
+                    }
+                    sizes="(max-width: 800px) 100vw, (max-width: 1080px) 50vw, 33vw"
+                  >
+                    <span className="gallery-scene__tag">{item.tag}</span>
+                  </PremiumMedia>
+                  <figcaption>
+                    <span className="gallery-card__index">
+                      {String(galleryItems.indexOf(item) + 1).padStart(2, "0")}
+                    </span>
+                    <span>{item.caption}</span>
+                  </figcaption>
+                </figure>
+              </StaggerItem>
             ))}
-            <article className="gallery-caption-card" data-reveal data-panel-slide>
-              <span className="framed-tag">Gallery note</span>
-              <p>
-                Mix tall still lifes, quieter object studies, and one wide
-                editorial frame so the gallery feels collected rather than
-                uniform.
-              </p>
-              <div className="gallery-caption-card__stack" aria-hidden="true">
-                <span style={{ backgroundImage: `url("${photos.heroStillLife}")` }} />
-                <span style={{ backgroundImage: `url("${photos.perfumeSheet}")` }} />
-              </div>
-            </article>
-            <article className="gallery-mood-strip" data-reveal data-panel-slide aria-hidden="true">
-              <span style={{ backgroundImage: `url("${photos.leafFlatlay}")` }} />
-              <span style={{ backgroundImage: `url("${photos.ceramics}")` }} />
-              <span style={{ backgroundImage: `url("${photos.leafShadowWall}")` }} />
-              <span style={{ backgroundImage: `url("${photos.afternoonRoom}")` }} />
-            </article>
-          </div>
+            <StaggerItem>
+              <article className="gallery-caption-card" data-panel-slide>
+                <span className="framed-tag">Gallery note</span>
+                <p>
+                  One commanding still life leads the sequence, followed by a
+                  portrait study, a wider cinematic frame, and a few quieter
+                  crops that let texture and light finish the story.
+                </p>
+                <div className="gallery-caption-card__stack" aria-hidden="true">
+                  <PremiumMedia
+                    src={photos.heroStillLife}
+                    alt=""
+                    ratio="thumb"
+                    sizes="160px"
+                  />
+                  <PremiumMedia
+                    src={photos.perfumeSheet}
+                    alt=""
+                    ratio="thumb"
+                    sizes="160px"
+                  />
+                </div>
+              </article>
+            </StaggerItem>
+          </StaggerChildren>
         </section>
 
-        <section className="story-section section-shell" id="testimonials">
+        {/* ─── TESTIMONIALS ─── */}
+        <section className="story-section story-section--text-led section-shell" id="testimonials">
           <div className="section-divider" aria-hidden="true">
             <span />
             <span className="section-divider__leaf" />
@@ -738,12 +883,17 @@ export default function Page() {
           </div>
           <Reveal className="section-heading">
             <div data-reveal>
-              <p className="eyebrow">Testimonials</p>
-              <h2>Voices that match the softness and confidence of the brand.</h2>
+              <p className="eyebrow">
+                <span className="eyebrow__dot" aria-hidden="true" />
+                Testimonials
+              </p>
+              <TextReveal
+                text="Voices that match the softness and confidence of the brand."
+                delay={0.1}
+              />
               <p className="section-copy">
-                Testimonials should feel like refined margin notes rather than
-                loud social proof blocks. They support the mood instead of
-                interrupting it.
+                Notes from clients, collaborators, and guests who have lived
+                with the house and carried its rituals into their own spaces.
               </p>
             </div>
           </Reveal>
@@ -751,32 +901,61 @@ export default function Page() {
           <TestimonialsCarousel items={testimonials} />
         </section>
 
-        <section className="story-section story-section--final section-shell" id="contact">
+        {/* ─── CONTACT ─── */}
+        <section className="story-section story-section--final story-section--conversion section-shell" id="contact">
           <div className="section-divider" aria-hidden="true">
             <span />
             <span className="section-divider__leaf" />
             <span />
           </div>
           <div
-            className="contact-shell"
+            className="contact-shell contact-shell--atmosphere"
             data-reveal
             data-panel-slide
             style={{
               backgroundImage: `linear-gradient(145deg, rgba(255, 251, 246, 0.8), rgba(233, 224, 211, 0.58)), url("${photos.windowPlant}")`,
             }}
           >
+            <div className="contact-atmosphere" aria-hidden="true">
+              <span className="contact-atmosphere__wash" />
+              <span className="contact-atmosphere__orb" />
+            </div>
             <div className="contact-copy">
-              <p className="eyebrow">Contact</p>
-              <h2>Ready to turn the full herbal world into an immersive site?</h2>
-              <p className="section-copy">
-                This first implementation defines the narrative foundation. From
-                here we can deepen the motion, add real photography, and turn
-                the page into a fully cinematic experience.
+              <p className="eyebrow">
+                <span className="eyebrow__dot" aria-hidden="true" />
+                Inquiry
               </p>
+              <h2>Bring the house into a private ritual, boutique shelf, or hospitality space.</h2>
+              <p className="section-copy">
+                We welcome inquiries from people, boutiques, and hospitality
+                spaces that want ritual, fragrance, and visual atmosphere to
+                feel considered from the first impression to the final detail.
+              </p>
+              <div className="contact-actions">
+                <a className="btn btn--primary" href="mailto:hello@herbsatelier.com">
+                  <span className="btn__text">Begin an inquiry</span>
+                  <span className="btn__shine" aria-hidden="true" />
+                </a>
+              </div>
               <div className="contact-photo-row" aria-hidden="true">
-                <span style={{ backgroundImage: `url("${photos.perfumeBottle}")` }} />
-                <span style={{ backgroundImage: `url("${photos.ceramics}")` }} />
-                <span style={{ backgroundImage: `url("${photos.leafShadowWall}")` }} />
+                <PremiumMedia
+                  src={photos.perfumeBottle}
+                  alt=""
+                  ratio="thumb"
+                  sizes="(max-width: 800px) 120px, 180px"
+                />
+                <PremiumMedia
+                  src={photos.ceramics}
+                  alt=""
+                  ratio="thumb"
+                  sizes="(max-width: 800px) 120px, 180px"
+                />
+                <PremiumMedia
+                  src={photos.leafShadowWall}
+                  alt=""
+                  ratio="thumb"
+                  sizes="(max-width: 800px) 120px, 180px"
+                />
               </div>
             </div>
 
@@ -786,13 +965,13 @@ export default function Page() {
                 <a href="mailto:hello@herbsatelier.com">hello@herbsatelier.com</a>
               </div>
               <div>
-                <span className="mini-label">Based in</span>
-                <p>Kochi, India</p>
+                <span className="mini-label">Availability</span>
+                <p>Private commissions, boutique placements, and spatial styling.</p>
               </div>
               <div>
-                <span className="mini-label">Next milestone</span>
+                <span className="mini-label">Based in</span>
                 <p>
-                  Advance this foundation into a fully animated editorial build.
+                  Kochi, India. Working with select partners worldwide.
                 </p>
               </div>
             </div>
@@ -800,9 +979,19 @@ export default function Page() {
         </section>
       </main>
 
+      {/* ─── FOOTER ─── */}
       <footer className="site-footer section-shell">
-        <p>Herbs Atelier</p>
-        <p>Luxury herbal storytelling in one continuous presentation.</p>
+        <div className="footer-brand">
+          <span className="footer-brand__icon" aria-hidden="true">✦</span>
+          <span className="footer-brand__name">Herbs Atelier</span>
+        </div>
+        <p className="footer-tagline">Botanical fragrance, ritual objects, and atmospheric spaces composed with restraint.</p>
+        <div className="footer-links">
+          {navItems.map(([label, href]) => (
+            <a key={href} href={href}>{label}</a>
+          ))}
+        </div>
+        <p className="footer-copy">&copy; {new Date().getFullYear()} Herbs Atelier.</p>
       </footer>
     </>
   );

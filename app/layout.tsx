@@ -3,6 +3,8 @@ import { Cormorant_Garamond, Manrope } from "next/font/google";
 import "./runtime-shims";
 import "./globals.css";
 import { MotionSystem } from "./motion-system";
+import { MagneticCursor } from "./magnetic-cursor";
+import { ScrollProgress } from "./scroll-progress";
 
 const headingFont = Cormorant_Garamond({
   subsets: ["latin"],
@@ -17,9 +19,9 @@ const bodyFont = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Herbs Atelier",
+  title: "Herbs Atelier — Luxury Herbal Brand Story",
   description:
-    "A luxury herbal brand story told through editorial layouts, botanical palettes, and immersive motion.",
+    "A luxury herbal brand story told through editorial layouts, botanical palettes, and immersive motion. Discover herbal rituals shaped like quiet cinema.",
 };
 
 export default function RootLayout({
@@ -31,6 +33,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${headingFont.variable} ${bodyFont.variable}`}>
         <MotionSystem />
+        <MagneticCursor />
+        <ScrollProgress />
         {children}
       </body>
     </html>
