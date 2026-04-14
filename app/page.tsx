@@ -1,4 +1,5 @@
 import { Reveal } from "./reveal";
+import { TestimonialsCarousel } from "./testimonials-carousel";
 
 const navItems = [
   ["About", "#about"],
@@ -87,16 +88,19 @@ const testimonials = [
     quote:
       "The atmosphere feels like walking into a restorative ritual that has already been prepared for you.",
     author: "Creative direction client",
+    imageClass: "testimonial-stage__backdrop--sage",
   },
   {
     quote:
       "There is luxury here, but it never feels distant. The warmth is what makes the visual world memorable.",
     author: "Private consultation guest",
+    imageClass: "testimonial-stage__backdrop--clay",
   },
   {
     quote:
       "Every section carries the same voice, so the whole website reads like one elegant presentation from start to finish.",
     author: "Brand strategy partner",
+    imageClass: "testimonial-stage__backdrop--cream",
   },
 ] as const;
 
@@ -169,9 +173,18 @@ export default function Page() {
 
           <div className="hero-composition" aria-hidden="true">
             <div className="hero-photo-panel" />
+            <div className="hero-depth hero-depth--one" data-mouse-depth="18" />
+            <div className="hero-depth hero-depth--two" data-mouse-depth="-12" />
+            <div className="hero-depth hero-depth--three" data-mouse-depth="24" />
+            <div className="hero-foreground-leaves" data-mouse-depth="30">
+              <span className="hero-foreground-leaf hero-foreground-leaf--a" />
+              <span className="hero-foreground-leaf hero-foreground-leaf--b" />
+              <span className="hero-foreground-leaf hero-foreground-leaf--c" />
+            </div>
             <article
               className="composition-card composition-card--cover"
               data-parallax="0.14"
+              data-mouse-depth="10"
             >
               <span className="card-kicker">Edition I</span>
               <h2>Rooted in fragrance, light, and leaves.</h2>
@@ -190,6 +203,7 @@ export default function Page() {
             <article
               className="composition-card composition-card--book"
               data-parallax="0.1"
+              data-mouse-depth="-8"
             >
               <div className="book-spread">
                 <div className="book-page">
@@ -208,6 +222,7 @@ export default function Page() {
             <article
               className="composition-card composition-card--note"
               data-parallax="0.08"
+              data-mouse-depth="14"
             >
               <span className="mini-label">Signature mood</span>
               <p>
@@ -222,6 +237,11 @@ export default function Page() {
         </section>
 
         <section className="story-section section-shell" id="about">
+          <div className="section-divider" aria-hidden="true">
+            <span />
+            <span className="section-divider__leaf" />
+            <span />
+          </div>
           <Reveal className="section-heading">
             <div data-reveal>
               <p className="eyebrow">About</p>
@@ -295,6 +315,11 @@ export default function Page() {
         </section>
 
         <section className="story-section section-shell" id="philosophy">
+          <div className="section-divider" aria-hidden="true">
+            <span />
+            <span className="section-divider__leaf" />
+            <span />
+          </div>
           <Reveal className="section-heading">
             <div data-reveal>
               <p className="eyebrow">Philosophy</p>
@@ -307,33 +332,45 @@ export default function Page() {
             </div>
           </Reveal>
 
-          <div className="philosophy-grid">
-            {principles.map((item) => (
+          <div className="philosophy-stage" data-philosophy-pin>
+            <div className="philosophy-frames" aria-hidden="true">
+              <span className="philosophy-frame philosophy-frame--one" />
+              <span className="philosophy-frame philosophy-frame--two" />
+              <span className="philosophy-frame philosophy-frame--three" />
+            </div>
+            <div className="philosophy-grid">
+              {principles.map((item) => (
+                <article
+                  className="principle-card"
+                  data-reveal
+                  data-panel-slide
+                  key={item.index}
+                >
+                  <span className="panel-index">{item.index}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.copy}</p>
+                </article>
+              ))}
               <article
-                className="principle-card"
+                className="principle-card principle-card--quote"
                 data-reveal
                 data-panel-slide
-                key={item.index}
               >
-                <span className="panel-index">{item.index}</span>
-                <h3>{item.title}</h3>
-                <p>{item.copy}</p>
+                <span className="framed-tag">Editorial rule</span>
+                <p className="principle-quote">
+                  Let silence do part of the storytelling.
+                </p>
               </article>
-            ))}
-            <article
-              className="principle-card principle-card--quote"
-              data-reveal
-              data-panel-slide
-            >
-              <span className="framed-tag">Editorial rule</span>
-              <p className="principle-quote">
-                Let silence do part of the storytelling.
-              </p>
-            </article>
+            </div>
           </div>
         </section>
 
         <section className="story-section section-shell" id="ingredients">
+          <div className="section-divider" aria-hidden="true">
+            <span />
+            <span className="section-divider__leaf" />
+            <span />
+          </div>
           <div className="ingredients-shell">
             <Reveal className="section-heading">
               <div data-reveal>
@@ -375,7 +412,73 @@ export default function Page() {
           </div>
         </section>
 
+        <section className="story-section section-shell" id="ritual-story">
+          <div className="section-divider" aria-hidden="true">
+            <span />
+            <span className="section-divider__leaf" />
+            <span />
+          </div>
+          <Reveal className="section-heading">
+            <div data-reveal>
+              <p className="eyebrow">Signature Scene</p>
+              <h2>A ritual story told through pinned botanical layers.</h2>
+              <p className="section-copy">
+                One memorable interaction should feel like the heart of the
+                brand. This chapter pins the page and lets vessels, leaves,
+                cards, and copy drift into alignment as the ritual takes shape.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="ritual-stage" data-ritual-pin>
+            <div className="ritual-stage__visual" aria-hidden="true">
+              <div className="ritual-layer ritual-layer--base" data-ritual-layer="0" />
+              <div className="ritual-layer ritual-layer--leaf-left" data-ritual-layer="1" />
+              <div className="ritual-layer ritual-layer--leaf-right" data-ritual-layer="2" />
+              <div className="ritual-layer ritual-layer--bottle" data-ritual-layer="3" />
+              <div className="ritual-layer ritual-layer--shadow" data-ritual-layer="4" />
+            </div>
+
+            <div className="ritual-stage__copy">
+              <article className="ritual-card" data-ritual-card="0">
+                <span className="framed-tag">01 Arrival</span>
+                <h3>The room opens in soft grain and leaves.</h3>
+                <p>
+                  The first layer is atmosphere: paper, shadow, and botanical
+                  forms setting the emotional temperature before any product
+                  appears.
+                </p>
+              </article>
+
+              <article className="ritual-card" data-ritual-card="1">
+                <span className="framed-tag">02 Composition</span>
+                <h3>Objects step forward like a styled editorial spread.</h3>
+                <p>
+                  Ceramics and vessels rise into view slowly, with overlapping
+                  forms that feel composed by hand rather than dropped into a
+                  grid.
+                </p>
+              </article>
+
+              <article className="ritual-card" data-ritual-card="2">
+                <span className="framed-tag">03 Reveal</span>
+                <h3>The signature blend becomes the quiet focal point.</h3>
+                <p>
+                  At the end of the interaction, the product holds the center of
+                  the page and the supporting layers settle around it like a
+                  complete ritual.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
         <section className="story-section section-shell" id="products">
+          <div className="section-divider" aria-hidden="true">
+            <span />
+            <span className="section-divider__leaf" />
+            <span />
+          </div>
           <Reveal className="section-heading">
             <div data-reveal>
               <p className="eyebrow">Products &amp; Services</p>
@@ -396,6 +499,15 @@ export default function Page() {
                 data-panel-slide
                 key={item.index}
               >
+                <div
+                  className={`product-card__media ${
+                    item.index === "01"
+                      ? "product-card__media--blend"
+                      : item.index === "02"
+                        ? "product-card__media--consult"
+                        : "product-card__media--space"
+                  }`}
+                />
                 <span className="panel-index">{item.index}</span>
                 <h3>{item.title}</h3>
                 <p>{item.copy}</p>
@@ -412,6 +524,11 @@ export default function Page() {
         </section>
 
         <section className="story-section section-shell" id="gallery">
+          <div className="section-divider" aria-hidden="true">
+            <span />
+            <span className="section-divider__leaf" />
+            <span />
+          </div>
           <Reveal className="section-heading">
             <div data-reveal>
               <p className="eyebrow">Gallery</p>
@@ -452,6 +569,11 @@ export default function Page() {
         </section>
 
         <section className="story-section section-shell" id="testimonials">
+          <div className="section-divider" aria-hidden="true">
+            <span />
+            <span className="section-divider__leaf" />
+            <span />
+          </div>
           <Reveal className="section-heading">
             <div data-reveal>
               <p className="eyebrow">Testimonials</p>
@@ -464,22 +586,15 @@ export default function Page() {
             </div>
           </Reveal>
 
-          <div className="testimonial-grid">
-            {testimonials.map((item) => (
-              <blockquote
-                className="testimonial-card"
-                data-reveal
-                data-panel-slide
-                key={item.author}
-              >
-                <p>“{item.quote}”</p>
-                <footer>{item.author}</footer>
-              </blockquote>
-            ))}
-          </div>
+          <TestimonialsCarousel items={testimonials} />
         </section>
 
         <section className="story-section story-section--final section-shell" id="contact">
+          <div className="section-divider" aria-hidden="true">
+            <span />
+            <span className="section-divider__leaf" />
+            <span />
+          </div>
           <div className="contact-shell" data-reveal data-panel-slide>
             <div className="contact-copy">
               <p className="eyebrow">Contact</p>

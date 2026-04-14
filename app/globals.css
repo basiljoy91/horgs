@@ -13,8 +13,9 @@
   --cream: #f6f1e8;
   --bronze: #86684f;
   --line: rgba(60, 67, 47, 0.16);
-  --shadow: 0 24px 60px rgba(49, 48, 39, 0.12);
-  --shadow-soft: 0 16px 36px rgba(49, 48, 39, 0.08);
+  --shadow: 0 26px 64px rgba(49, 48, 39, 0.11);
+  --shadow-soft: 0 18px 40px rgba(49, 48, 39, 0.07);
+  --shadow-glow: 0 18px 42px rgba(255, 248, 238, 0.18);
   --radius: 28px;
   --max-width: 1180px;
 }
@@ -55,6 +56,17 @@ body::before {
     linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent 45%),
     radial-gradient(circle at 12% 18%, rgba(86, 102, 74, 0.08), transparent 18%);
   mix-blend-mode: soft-light;
+  z-index: -2;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 252, 246, 0.18), transparent 18%, transparent 80%, rgba(135, 115, 94, 0.08)),
+    radial-gradient(circle at 50% 8%, rgba(255, 248, 236, 0.22), transparent 36%);
   z-index: -2;
 }
 
@@ -149,6 +161,33 @@ blockquote {
   background-position: 0 0, 40px 80px, 0 0;
 }
 
+.section-divider {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1rem;
+  align-items: center;
+  margin: 0 0 2.4rem;
+  opacity: 0.72;
+}
+
+.section-divider span {
+  display: block;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(99, 110, 83, 0.28), transparent);
+}
+
+.section-divider__leaf {
+  width: 2.6rem;
+  height: 1.1rem;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.65), transparent 24%),
+    linear-gradient(90deg, rgba(120, 137, 101, 0.9), rgba(184, 153, 124, 0.78));
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.28),
+    0 10px 20px rgba(75, 74, 60, 0.08);
+}
+
 .section-shell {
   width: min(var(--max-width), calc(100% - 2rem));
   margin: 0 auto;
@@ -166,9 +205,10 @@ blockquote {
   padding: 0.95rem 1.25rem;
   border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: 999px;
-  background: rgba(248, 243, 236, 0.52);
-  backdrop-filter: blur(18px);
-  box-shadow: var(--shadow-soft);
+  background:
+    linear-gradient(145deg, rgba(255, 252, 246, 0.54), rgba(239, 231, 220, 0.36));
+  backdrop-filter: blur(20px) saturate(1.08);
+  box-shadow: var(--shadow-soft), var(--shadow-glow);
 }
 
 .brandmark,
@@ -310,7 +350,7 @@ blockquote {
   padding: 0 0.85rem;
   border: 1px solid rgba(40, 50, 38, 0.12);
   border-radius: 999px;
-  background: rgba(255, 251, 245, 0.72);
+  background: rgba(255, 251, 245, 0.68);
   box-shadow: 0 10px 24px rgba(57, 51, 43, 0.08);
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -396,6 +436,38 @@ blockquote {
   isolation: isolate;
 }
 
+.hero-depth {
+  position: absolute;
+  border-radius: 28px;
+  box-shadow: var(--shadow-soft);
+}
+
+.hero-depth--one {
+  inset: 3rem 4rem 8rem 8rem;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02));
+  backdrop-filter: blur(12px);
+}
+
+.hero-depth--two {
+  top: 4.5rem;
+  right: 4rem;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.72), rgba(173, 137, 108, 0.92));
+}
+
+.hero-depth--three {
+  left: 4rem;
+  bottom: 3rem;
+  width: 14rem;
+  height: 5rem;
+  background: url("/assets/textures/shadow-soft.svg") center/cover no-repeat;
+  opacity: 0.58;
+}
+
 .hero-photo-panel {
   position: absolute;
   inset: 1rem 2.5rem 2rem 1rem;
@@ -443,6 +515,61 @@ blockquote {
   filter: saturate(1.04);
 }
 
+.hero-foreground-leaves {
+  position: absolute;
+  right: 1rem;
+  bottom: -1rem;
+  width: 16rem;
+  height: 16rem;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.hero-foreground-leaf {
+  position: absolute;
+  border-radius: 100% 0 100% 0;
+  background:
+    linear-gradient(180deg, rgba(191, 210, 175, 0.92), rgba(86, 102, 74, 0.98));
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.18),
+    0 24px 44px rgba(48, 66, 43, 0.22);
+}
+
+.hero-foreground-leaf::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  bottom: 10%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.24);
+  transform: translateX(-50%) rotate(8deg);
+}
+
+.hero-foreground-leaf--a {
+  right: 1rem;
+  top: 0.5rem;
+  width: 5rem;
+  height: 9.5rem;
+  transform: rotate(18deg);
+}
+
+.hero-foreground-leaf--b {
+  right: 4.8rem;
+  top: 2.4rem;
+  width: 4.2rem;
+  height: 8rem;
+  transform: rotate(-4deg);
+}
+
+.hero-foreground-leaf--c {
+  right: 7.8rem;
+  top: 4.5rem;
+  width: 3.4rem;
+  height: 6.6rem;
+  transform: rotate(-18deg);
+}
+
 .composition-card,
 .editorial-card,
 .principle-card,
@@ -456,17 +583,17 @@ blockquote {
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: var(--radius);
   background:
-    linear-gradient(145deg, rgba(255, 251, 246, 0.78), rgba(236, 227, 214, 0.58));
-  box-shadow: var(--shadow);
+    linear-gradient(145deg, rgba(255, 251, 246, 0.74), rgba(236, 227, 214, 0.56));
+  box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.18);
   transition:
-    transform 650ms cubic-bezier(0.19, 1, 0.22, 1),
-    box-shadow 650ms cubic-bezier(0.19, 1, 0.22, 1),
-    border-color 450ms ease,
-    background-size 900ms ease;
+    transform 780ms cubic-bezier(0.19, 1, 0.22, 1),
+    box-shadow 900ms cubic-bezier(0.19, 1, 0.22, 1),
+    border-color 520ms ease,
+    background-size 1200ms ease;
 }
 
 .composition-card {
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(18px) saturate(1.04);
 }
 
 .composition-card:hover,
@@ -479,8 +606,8 @@ blockquote {
 .contact-shell:hover,
 .ingredient-feature:hover,
 .gallery-caption-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 30px 64px rgba(49, 48, 39, 0.16);
+  transform: translateY(-6px);
+  box-shadow: 0 28px 60px rgba(49, 48, 39, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.22);
   border-color: rgba(255, 255, 255, 0.58);
 }
 
@@ -590,7 +717,7 @@ blockquote {
   background:
     radial-gradient(circle at 32% 30%, rgba(255, 255, 255, 0.62), rgba(163, 123, 96, 0.95));
   box-shadow: inset -10px -12px 24px rgba(73, 50, 34, 0.14);
-  animation: float 8s ease-in-out infinite;
+  animation: float 10s ease-in-out infinite;
 }
 
 .hero-orb--one {
@@ -709,6 +836,13 @@ blockquote {
   gap: 1rem;
   max-width: 48rem;
   margin-bottom: 2.25rem;
+}
+
+.section-heading::after {
+  content: "";
+  width: 5rem;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(95, 108, 79, 0.48), rgba(95, 108, 79, 0));
 }
 
 .section-heading h2,
@@ -844,6 +978,62 @@ blockquote {
   align-items: stretch;
 }
 
+.philosophy-stage {
+  position: relative;
+  min-height: 36rem;
+  display: grid;
+  align-items: center;
+}
+
+.philosophy-frames {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+}
+
+.philosophy-frame {
+  position: absolute;
+  border-radius: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
+  box-shadow: var(--shadow-soft);
+}
+
+.philosophy-frame--one {
+  top: 1rem;
+  left: -2rem;
+  width: 18rem;
+  height: 24rem;
+  background-image:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04)),
+    url("/assets/overlays/leaf-overlay-left.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.philosophy-frame--two {
+  right: 4rem;
+  top: 0;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.66), rgba(194, 154, 121, 0.88));
+}
+
+.philosophy-frame--three {
+  right: -1rem;
+  bottom: 1rem;
+  width: 17rem;
+  height: 22rem;
+  background-image:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+    url("/assets/overlays/leaf-overlay-right.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .principle-card,
 .ingredient-card,
 .product-card,
@@ -888,6 +1078,7 @@ blockquote {
   background:
     linear-gradient(155deg, rgba(99, 115, 84, 0.98), rgba(84, 97, 71, 0.92));
   color: #f8f2e9;
+  overflow: hidden;
 }
 
 .ingredient-card .panel-index,
@@ -898,6 +1089,16 @@ blockquote {
 .ingredient-card:nth-child(even) {
   background:
     linear-gradient(155deg, rgba(188, 146, 113, 0.95), rgba(167, 128, 100, 0.94));
+}
+
+.ingredient-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -1rem -1rem auto;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.2), transparent 62%);
 }
 
 .ingredient-feature {
@@ -946,6 +1147,118 @@ blockquote {
   line-height: 1.75;
 }
 
+.ritual-stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 2rem;
+  min-height: 42rem;
+  align-items: center;
+}
+
+.ritual-stage__visual {
+  position: relative;
+  min-height: 38rem;
+  border-radius: 36px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.44);
+  background:
+    linear-gradient(145deg, rgba(255, 251, 246, 0.74), rgba(232, 223, 210, 0.56));
+  box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(18px) saturate(1.03);
+}
+
+.ritual-layer {
+  position: absolute;
+  inset: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  will-change: transform, opacity, filter;
+}
+
+.ritual-layer--base {
+  background-image:
+    linear-gradient(rgba(244, 237, 227, 0.08), rgba(244, 237, 227, 0.08)),
+    url("/assets/photos/herb-still-life.svg");
+}
+
+.ritual-layer--leaf-left {
+  inset: auto auto -1rem -2rem;
+  width: 20rem;
+  height: 28rem;
+  background-image: url("/assets/overlays/leaf-overlay-left.svg");
+  background-size: contain;
+}
+
+.ritual-layer--leaf-right {
+  inset: 2rem -1rem auto auto;
+  width: 16rem;
+  height: 22rem;
+  background-image: url("/assets/overlays/leaf-overlay-right.svg");
+  background-size: contain;
+}
+
+.ritual-layer--bottle {
+  inset: auto 11% 10% auto;
+  width: 16rem;
+  height: 16rem;
+  border-radius: 32px;
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02)),
+    url("/assets/objects/ceramic-composition.svg");
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 30px 60px rgba(58, 50, 42, 0.22);
+}
+
+.ritual-layer--shadow {
+  inset: auto 12% 4% auto;
+  width: 18rem;
+  height: 5rem;
+  background-image: url("/assets/textures/shadow-soft.svg");
+  background-size: contain;
+  background-position: center;
+  opacity: 0.64;
+}
+
+.ritual-stage__copy {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+}
+
+.ritual-card {
+  display: grid;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.44);
+  background:
+    linear-gradient(145deg, rgba(255, 251, 246, 0.78), rgba(235, 226, 213, 0.64));
+  box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(255, 255, 255, 0.24);
+  backdrop-filter: blur(14px) saturate(1.03);
+  opacity: 0.36;
+  transform: translateY(1.25rem) scale(0.985);
+}
+
+.ritual-card h3 {
+  font-family: var(--font-heading), serif;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  line-height: 0.98;
+  font-weight: 600;
+}
+
+.ritual-card p {
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.ritual-card.is-active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
 .product-grid {
   display: grid;
   grid-template-columns: 1.35fr 0.75fr 0.75fr;
@@ -958,6 +1271,40 @@ blockquote {
   align-content: end;
   background:
     linear-gradient(160deg, rgba(255, 249, 241, 0.88), rgba(236, 228, 215, 0.72));
+}
+
+.product-card__media {
+  position: absolute;
+  inset: 0;
+  opacity: 0.34;
+  background-size: cover;
+  background-position: center;
+  transition:
+    transform 1200ms cubic-bezier(0.19, 1, 0.22, 1),
+    opacity 900ms ease;
+}
+
+.product-card__media--blend {
+  background-image:
+    linear-gradient(160deg, rgba(73, 85, 61, 0.18), rgba(73, 85, 61, 0.04)),
+    url("/assets/photos/herb-still-life.svg");
+}
+
+.product-card__media--consult {
+  background-image:
+    linear-gradient(160deg, rgba(95, 108, 78, 0.16), rgba(255, 255, 255, 0.02)),
+    url("/assets/textures/paper-texture.svg");
+}
+
+.product-card__media--space {
+  background-image:
+    linear-gradient(160deg, rgba(149, 114, 86, 0.18), rgba(255, 255, 255, 0.02)),
+    url("/assets/objects/ceramic-composition.svg");
+}
+
+.product-card:hover .product-card__media {
+  transform: scale(1.06);
+  opacity: 0.48;
 }
 
 .product-card--large {
@@ -1147,6 +1494,109 @@ blockquote {
   gap: 1.2rem;
 }
 
+.testimonial-stage {
+  position: relative;
+  min-height: 30rem;
+  overflow: hidden;
+  border-radius: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  background:
+    linear-gradient(145deg, rgba(255, 251, 246, 0.76), rgba(233, 224, 211, 0.62));
+  backdrop-filter: blur(16px) saturate(1.02);
+}
+
+.testimonial-stage__backdrop {
+  position: absolute;
+  inset: 0;
+  transition:
+    opacity 900ms ease,
+    transform 1200ms cubic-bezier(0.19, 1, 0.22, 1);
+  transform: scale(1.03);
+}
+
+.testimonial-stage__backdrop::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(43, 49, 39, 0.58), rgba(43, 49, 39, 0.16)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent);
+}
+
+.testimonial-stage__backdrop--sage {
+  background:
+    linear-gradient(160deg, rgba(94, 109, 78, 0.9), rgba(184, 154, 126, 0.74)),
+    url("/assets/photos/herb-still-life.svg") center/cover no-repeat;
+}
+
+.testimonial-stage__backdrop--clay {
+  background:
+    linear-gradient(160deg, rgba(173, 131, 101, 0.88), rgba(99, 115, 84, 0.68)),
+    url("/assets/objects/ceramic-composition.svg") center/cover no-repeat;
+}
+
+.testimonial-stage__backdrop--cream {
+  background:
+    linear-gradient(160deg, rgba(235, 225, 211, 0.9), rgba(96, 110, 79, 0.62)),
+    url("/assets/textures/paper-texture.svg") center/cover no-repeat;
+}
+
+.testimonial-stage__panel {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  align-content: end;
+  min-height: 30rem;
+  padding: 2rem;
+}
+
+.testimonial-stage__quote {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 34rem;
+}
+
+.testimonial-stage__quote p {
+  font-family: var(--font-heading), serif;
+  font-size: clamp(2.2rem, 4vw, 3.6rem);
+  line-height: 1.03;
+  color: #f8f2e8;
+}
+
+.testimonial-stage__quote footer {
+  color: rgba(248, 242, 232, 0.76);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.testimonial-stage__dots {
+  display: flex;
+  gap: 0.7rem;
+  margin-top: 2rem;
+}
+
+.testimonial-stage__dots button {
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  background: rgba(255, 255, 255, 0.24);
+  cursor: pointer;
+  transition:
+    transform 300ms ease,
+    background-color 300ms ease,
+    border-color 300ms ease;
+}
+
+.testimonial-stage__dots button.is-active {
+  background: rgba(255, 255, 255, 0.86);
+  border-color: rgba(255, 255, 255, 0.86);
+  transform: scale(1.14);
+}
+
 .testimonial-card {
   min-height: 16rem;
   align-content: space-between;
@@ -1174,6 +1624,7 @@ blockquote {
   background-image: url("/assets/textures/paper-texture.svg");
   background-size: cover;
   background-position: center;
+  backdrop-filter: blur(12px) saturate(1.02);
 }
 
 .contact-copy {
@@ -1216,8 +1667,8 @@ blockquote {
   opacity: 0;
   transform: translateY(32px) scale(0.985);
   transition:
-    opacity 900ms cubic-bezier(0.19, 1, 0.22, 1),
-    transform 1000ms cubic-bezier(0.19, 1, 0.22, 1);
+    opacity 1100ms cubic-bezier(0.19, 1, 0.22, 1),
+    transform 1250ms cubic-bezier(0.19, 1, 0.22, 1);
   transition-delay: var(--delay, 0ms);
 }
 
@@ -1257,9 +1708,13 @@ blockquote {
     inset: 1rem 1.25rem 1.6rem 0.6rem;
   }
 
+  .hero-foreground-leaves,
+  .philosophy-frames {
+    opacity: 0.72;
+  }
+
   .about-grid,
   .product-grid,
-  .testimonial-grid,
   .contact-shell,
   .philosophy-grid {
     grid-template-columns: 1fr;
@@ -1277,6 +1732,15 @@ blockquote {
 
   .ingredient-grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .ritual-stage {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .ritual-stage__visual {
+    min-height: 30rem;
   }
 
   .ingredient-feature {
@@ -1357,6 +1821,19 @@ blockquote {
     min-height: auto;
   }
 
+  .ritual-stage__visual {
+    min-height: 24rem;
+  }
+
+  .testimonial-stage {
+    min-height: 24rem;
+  }
+
+  .testimonial-stage__panel {
+    min-height: 24rem;
+    padding: 1.5rem;
+  }
+
   .site-footer {
     flex-direction: column;
     padding-bottom: 2.8rem;
@@ -1412,13 +1889,56 @@ blockquote {
     opacity: 0.28;
   }
 
+  .hero-foreground-leaves {
+    width: 12rem;
+    height: 12rem;
+    right: -1rem;
+  }
+
+  .philosophy-stage {
+    min-height: auto;
+  }
+
+  .ritual-layer--leaf-left {
+    width: 12rem;
+    height: 16rem;
+    left: -1rem;
+    bottom: -1rem;
+  }
+
+  .ritual-layer--leaf-right {
+    width: 10rem;
+    height: 14rem;
+    right: -1rem;
+  }
+
+  .ritual-layer--bottle {
+    width: 11rem;
+    height: 11rem;
+    right: 12%;
+    bottom: 12%;
+  }
+
+  .philosophy-frame--one,
+  .philosophy-frame--three {
+    width: 10rem;
+    height: 14rem;
+  }
+
+  .philosophy-frame--two {
+    width: 6rem;
+    height: 6rem;
+    right: 1rem;
+  }
+
   .section-heading h2,
   .contact-copy h2 {
     font-size: clamp(2.3rem, 12vw, 3.6rem);
   }
 
   .feature-quote,
-  .testimonial-card p {
+  .testimonial-card p,
+  .testimonial-stage__quote p {
     font-size: 1.8rem;
   }
 }
