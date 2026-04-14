@@ -25,6 +25,7 @@ export function MotionSystem() {
       touchMultiplier: 0.9,
       autoRaf: false,
     });
+    const mm = gsap.matchMedia();
 
     let frame = 0;
 
@@ -100,20 +101,183 @@ export function MotionSystem() {
       );
     });
 
-    gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((element) => {
-      const speed = Number(element.dataset.parallax || 0.1);
+    mm.add(
+      {
+        desktop: "(min-width: 801px)",
+        mobile: "(max-width: 800px)",
+      },
+      (context) => {
+        const { desktop } = context.conditions as { desktop?: boolean; mobile?: boolean };
 
-      gsap.to(element, {
-        yPercent: speed * -42,
-        ease: "none",
-        scrollTrigger: {
-          trigger: element,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1.2,
-        },
-      });
-    });
+        gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((element) => {
+          const speed = Number(element.dataset.parallax || 0.1);
+          const travel = desktop ? -42 : -14;
+
+          gsap.to(element, {
+            yPercent: speed * travel,
+            ease: "none",
+            scrollTrigger: {
+              trigger: element,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: desktop ? 1.2 : 0.8,
+            },
+          });
+        });
+
+        gsap.utils.toArray<HTMLElement>("[data-philosophy-pin]").forEach((element) => {
+          const cards = element.querySelectorAll(".principle-card");
+
+          if (desktop) {
+            ScrollTrigger.create({
+              trigger: element,
+              start: "top top+=10%",
+              end: "+=55%",
+              pin: true,
+              scrub: 0.9,
+            });
+          }
+
+          cards.forEach((card, index) => {
+            gsap.fromTo(
+              card,
+              {
+                y: desktop ? index * 30 : 20,
+                rotate: desktop ? (index % 2 === 0 ? -1.5 : 1.5) : 0,
+              },
+              {
+                y: desktop ? index * -8 : 0,
+                rotate: desktop ? (index % 2 === 0 ? 1 : -1) : 0,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: element,
+                  start: "top bottom",
+                  end: "bottom top",
+                  scrub: desktop ? 1.1 : 0.7,
+                },
+              }
+            );
+          });
+        });
+
+        gsap.utils.toArray<HTMLElement>("[data-ritual-pin]").forEach((element) => {
+          const layers = Array.from(
+            element.querySelectorAll<HTMLElement>("[data-ritual-layer]")
+          );
+          const cards = Array.from(
+            element.querySelectorAll<HTMLElement>("[data-ritual-card]")
+          );
+
+          const timeline = gsap.timeline({
+            scrollTrigger: {
+              trigger: element,
+              start: desktop ? "top top+=10%" : "top top+=6%",
+              end: desktop ? "+=150%" : "+=95%",
+              pin: true,
+              scrub: desktop ? 1 : 0.9,
+            },
+          });
+
+          cards.forEach((card, index) => {
+            if (index === 0) {
+              card.classList.add("is-active");
+            }
+          });
+
+          timeline
+            .fromTo(
+              layers[1],
+              {
+                xPercent: desktop ? -20 : -12,
+                yPercent: desktop ? 12 : 8,
+                opacity: 0.35,
+              },
+              {
+                xPercent: desktop ? -4 : -2,
+                yPercent: 0,
+                opacity: 0.88,
+                duration: 1,
+              }
+            )
+            .fromTo(
+              layers[2],
+              {
+                xPercent: desktop ? 18 : 10,
+                yPercent: desktop ? -14 : -8,
+                opacity: 0.22,
+              },
+              {
+                xPercent: 0,
+                yPercent: 0,
+                opacity: 0.78,
+                duration: 1,
+              },
+              0.08
+            )
+            .fromTo(
+              layers[3],
+              {
+                scale: desktop ? 0.8 : 0.9,
+                yPercent: desktop ? 18 : 12,
+                filter: desktop ? "blur(10px)" : "blur(6px)",
+                opacity: 0.3,
+              },
+              {
+                scale: 1,
+                yPercent: 0,
+                filter: "blur(0px)",
+                opacity: 1,
+                duration: 1,
+              },
+              0.28
+            )
+            .fromTo(
+              layers[4],
+              {
+                opacity: 0.12,
+                scaleX: desktop ? 0.72 : 0.84,
+              },
+              {
+                opacity: 0.68,
+                scaleX: 1,
+                duration: 1,
+              },
+              0.38
+            );
+
+          cards.forEach((card, index) => {
+            ScrollTrigger.create({
+              trigger: element,
+              start: `${index * 33 + 8}% center`,
+              end: `${index * 33 + 38}% center`,
+              scrub: true,
+              onUpdate: (self) => {
+                const progress = self.progress;
+                gsap.to(card, {
+                  opacity: 0.36 + progress * 0.64,
+                  y: (1 - progress) * (desktop ? 18 : 10),
+                  scale: 0.985 + progress * 0.015,
+                  duration: 0.2,
+                  overwrite: "auto",
+                });
+              },
+              onEnter: () => card.classList.add("is-active"),
+              onEnterBack: () => card.classList.add("is-active"),
+              onLeave: () => {
+                if (index < cards.length - 1) {
+                  card.classList.remove("is-active");
+                }
+              },
+              onLeaveBack: () => {
+                if (index > 0) {
+                  card.classList.remove("is-active");
+                }
+              },
+            });
+          });
+        });
+      }
+    );
 
     gsap.utils.toArray<HTMLElement>("[data-panel-slide]").forEach((element, index) => {
       const direction = index % 2 === 0 ? -56 : 56;
@@ -136,156 +300,6 @@ export function MotionSystem() {
           },
         }
       );
-    });
-
-    gsap.utils.toArray<HTMLElement>("[data-philosophy-pin]").forEach((element) => {
-      const cards = element.querySelectorAll(".principle-card");
-
-      ScrollTrigger.create({
-        trigger: element,
-        start: "top top+=10%",
-        end: "+=55%",
-        pin: true,
-        scrub: 0.9,
-      });
-
-      cards.forEach((card, index) => {
-        gsap.fromTo(
-          card,
-          {
-            y: index * 30,
-            rotate: index % 2 === 0 ? -1.5 : 1.5,
-          },
-          {
-            y: index * -8,
-            rotate: index % 2 === 0 ? 1 : -1,
-            ease: "none",
-            scrollTrigger: {
-              trigger: element,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1.1,
-            },
-          }
-        );
-      });
-    });
-
-    gsap.utils.toArray<HTMLElement>("[data-ritual-pin]").forEach((element) => {
-      const layers = Array.from(
-        element.querySelectorAll<HTMLElement>("[data-ritual-layer]")
-      );
-      const cards = Array.from(
-        element.querySelectorAll<HTMLElement>("[data-ritual-card]")
-      );
-
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: element,
-          start: "top top+=10%",
-          end: "+=150%",
-          pin: true,
-          scrub: 1,
-        },
-      });
-
-      cards.forEach((card, index) => {
-        if (index === 0) {
-          card.classList.add("is-active");
-        }
-      });
-
-      timeline
-        .fromTo(
-          layers[1],
-          {
-            xPercent: -20,
-            yPercent: 12,
-            opacity: 0.35,
-          },
-          {
-            xPercent: -4,
-            yPercent: 0,
-            opacity: 0.88,
-            duration: 1,
-          }
-        )
-        .fromTo(
-          layers[2],
-          {
-            xPercent: 18,
-            yPercent: -14,
-            opacity: 0.22,
-          },
-          {
-            xPercent: 0,
-            yPercent: 0,
-            opacity: 0.78,
-            duration: 1,
-          },
-          0.08
-        )
-        .fromTo(
-          layers[3],
-          {
-            scale: 0.8,
-            yPercent: 18,
-            filter: "blur(10px)",
-            opacity: 0.3,
-          },
-          {
-            scale: 1,
-            yPercent: 0,
-            filter: "blur(0px)",
-            opacity: 1,
-            duration: 1,
-          },
-          0.28
-        )
-        .fromTo(
-          layers[4],
-          {
-            opacity: 0.12,
-            scaleX: 0.72,
-          },
-          {
-            opacity: 0.68,
-            scaleX: 1,
-            duration: 1,
-          },
-          0.38
-        );
-
-      cards.forEach((card, index) => {
-        ScrollTrigger.create({
-          trigger: element,
-          start: `${index * 33 + 8}% center`,
-          end: `${index * 33 + 38}% center`,
-          scrub: true,
-          onUpdate: (self) => {
-            const progress = self.progress;
-            gsap.to(card, {
-              opacity: 0.36 + progress * 0.64,
-              y: (1 - progress) * 18,
-              scale: 0.985 + progress * 0.015,
-              duration: 0.2,
-              overwrite: "auto",
-            });
-          },
-          onEnter: () => card.classList.add("is-active"),
-          onEnterBack: () => card.classList.add("is-active"),
-          onLeave: () => {
-            if (index < cards.length - 1) {
-              card.classList.remove("is-active");
-            }
-          },
-          onLeaveBack: () => {
-            if (index > 0) {
-              card.classList.remove("is-active");
-            }
-          },
-        });
-      });
     });
 
     const hero = document.querySelector<HTMLElement>(".hero");
@@ -326,8 +340,10 @@ export function MotionSystem() {
       });
     };
 
-    hero?.addEventListener("mousemove", handleMouseMove);
-    hero?.addEventListener("mouseleave", resetMouseDepth);
+    if (window.matchMedia("(min-width: 801px)").matches) {
+      hero?.addEventListener("mousemove", handleMouseMove);
+      hero?.addEventListener("mouseleave", resetMouseDepth);
+    }
 
     gsap.to(".page-glow--left", {
       x: 36,
@@ -373,6 +389,7 @@ export function MotionSystem() {
     return () => {
       window.cancelAnimationFrame(frame);
       lenis.destroy();
+      mm.revert();
       hero?.removeEventListener("mousemove", handleMouseMove);
       hero?.removeEventListener("mouseleave", resetMouseDepth);
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());

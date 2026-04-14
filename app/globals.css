@@ -1698,10 +1698,11 @@ blockquote {
     grid-template-columns: 1fr;
     min-height: auto;
     padding-top: 3rem;
+    gap: 2.4rem;
   }
 
   .hero-composition {
-    min-height: 38rem;
+    min-height: 36rem;
   }
 
   .hero-photo-panel {
@@ -1730,6 +1731,10 @@ blockquote {
     transform: none;
   }
 
+  .editorial-card--note {
+    max-width: 26rem;
+  }
+
   .ingredient-grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -1755,6 +1760,10 @@ blockquote {
   .gallery-card--wide {
     grid-column: span 2;
   }
+
+  .section-heading {
+    margin-bottom: 2rem;
+  }
 }
 
 @media (max-width: 800px) {
@@ -1770,6 +1779,7 @@ blockquote {
 
   .hero h1 {
     font-size: clamp(3.2rem, 18vw, 5rem);
+    max-width: 9ch;
   }
 
   .hero-metrics,
@@ -1782,16 +1792,21 @@ blockquote {
 
   .composition-card--cover {
     width: 100%;
+    min-height: 22rem;
+    padding: 1.6rem;
   }
 
   .composition-card--book {
-    top: 13.8rem;
-    width: 82%;
+    top: 12.6rem;
+    right: 0.75rem;
+    width: min(22rem, 78%);
+    min-height: 15rem;
   }
 
   .composition-card--note {
-    left: 0.8rem;
-    bottom: 0.2rem;
+    left: 1rem;
+    bottom: 0.8rem;
+    width: min(16rem, 72%);
   }
 
   .editorial-card {
@@ -1799,7 +1814,16 @@ blockquote {
   }
 
   .card-scene {
-    min-height: 20rem;
+    min-height: 18rem;
+  }
+
+  .card-copy {
+    padding: 1.5rem;
+  }
+
+  .editorial-card--note {
+    max-width: none;
+    padding: 1.5rem;
   }
 
   .gallery-card--wide,
@@ -1823,6 +1847,8 @@ blockquote {
 
   .ritual-stage__visual {
     min-height: 24rem;
+    order: -1;
+    border-radius: 30px;
   }
 
   .testimonial-stage {
@@ -1838,6 +1864,53 @@ blockquote {
     flex-direction: column;
     padding-bottom: 2.8rem;
   }
+
+  .hero-foreground-leaves {
+    width: 11rem;
+    height: 11rem;
+    right: 0.25rem;
+    bottom: -0.25rem;
+  }
+
+  .hero-depth--one {
+    inset: 2.25rem 2.4rem 7rem 4rem;
+  }
+
+  .hero-depth--two {
+    top: 3.2rem;
+    right: 2rem;
+    width: 6.25rem;
+    height: 6.25rem;
+  }
+
+  .hero-depth--three {
+    left: 2rem;
+    bottom: 2.5rem;
+    width: 11rem;
+  }
+
+  .philosophy-frame--one,
+  .philosophy-frame--three {
+    opacity: 0.42;
+  }
+
+  .principle-card,
+  .ingredient-card,
+  .product-card,
+  .testimonial-card,
+  .ritual-card {
+    padding: 1.4rem;
+  }
+
+  .section-divider {
+    margin-bottom: 1.8rem;
+  }
+
+  .gallery-caption-card {
+    transform: none;
+    min-height: 14rem;
+    padding: 1.35rem;
+  }
 }
 
 @media (max-width: 560px) {
@@ -1845,12 +1918,22 @@ blockquote {
     width: min(var(--max-width), calc(100% - 1rem));
   }
 
+  .topbar {
+    padding: 0.85rem 1rem;
+  }
+
+  .brandmark {
+    font-size: 1.45rem;
+  }
+
   .hero {
+    gap: 1.5rem;
+    padding-top: 2rem;
     padding-bottom: 3.5rem;
   }
 
   .hero-composition {
-    min-height: 34rem;
+    min-height: 31rem;
   }
 
   .composition-card--cover,
@@ -1863,21 +1946,27 @@ blockquote {
   }
 
   .composition-card--cover {
-    min-height: 21rem;
+    min-height: 19rem;
   }
 
   .composition-card--book {
-    top: 15rem;
+    top: 11.8rem;
+    width: calc(100% - 1.5rem);
   }
 
   .composition-card--note {
     top: auto;
-    bottom: 0;
-    width: 92%;
+    left: 0.75rem;
+    bottom: 0.6rem;
+    width: min(15rem, calc(100% - 1.5rem));
+    padding: 1rem 1.05rem;
   }
 
   .hero-orb--one {
-    right: 0.8rem;
+    top: 0.9rem;
+    right: 0.4rem;
+    width: 3.2rem;
+    height: 3.2rem;
   }
 
   .hero-orb--two {
@@ -1890,33 +1979,94 @@ blockquote {
   }
 
   .hero-foreground-leaves {
-    width: 12rem;
-    height: 12rem;
-    right: -1rem;
+    width: 8.5rem;
+    height: 8.5rem;
+    right: 0;
+    bottom: 0.2rem;
+  }
+
+  .hero-foreground-leaf--a {
+    width: 3.8rem;
+    height: 7rem;
+  }
+
+  .hero-foreground-leaf--b {
+    right: 3.6rem;
+    width: 3.2rem;
+    height: 6rem;
+  }
+
+  .hero-foreground-leaf--c {
+    right: 6rem;
+    top: 3.7rem;
+    width: 2.4rem;
+    height: 4.8rem;
+  }
+
+  .hero-depth--one,
+  .hero-depth--three {
+    display: none;
+  }
+
+  .hero-depth--two {
+    top: 2rem;
+    right: 1rem;
+    width: 4.8rem;
+    height: 4.8rem;
+  }
+
+  .book-spread {
+    grid-template-columns: 1.15fr 0.85fr;
+  }
+
+  .book-page {
+    padding: 1.35rem 1rem;
+  }
+
+  .book-page p {
+    font-size: 1.2rem;
   }
 
   .philosophy-stage {
     min-height: auto;
   }
 
+  .philosophy-frames {
+    display: none;
+  }
+
   .ritual-layer--leaf-left {
-    width: 12rem;
-    height: 16rem;
-    left: -1rem;
-    bottom: -1rem;
+    width: 9rem;
+    height: 13rem;
+    left: -0.4rem;
+    bottom: -0.4rem;
   }
 
   .ritual-layer--leaf-right {
-    width: 10rem;
-    height: 14rem;
-    right: -1rem;
+    width: 7.5rem;
+    height: 11rem;
+    right: -0.3rem;
+    top: 0.8rem;
   }
 
   .ritual-layer--bottle {
-    width: 11rem;
-    height: 11rem;
-    right: 12%;
+    width: 8.75rem;
+    height: 8.75rem;
+    right: 10%;
     bottom: 12%;
+  }
+
+  .ritual-layer--shadow {
+    width: 12rem;
+    right: 7%;
+  }
+
+  .ritual-stage__visual {
+    min-height: 20rem;
+  }
+
+  .ritual-stage__copy {
+    gap: 0.85rem;
   }
 
   .philosophy-frame--one,
@@ -1936,10 +2086,108 @@ blockquote {
     font-size: clamp(2.3rem, 12vw, 3.6rem);
   }
 
+  .hero-lede,
+  .section-copy,
+  .support-copy,
+  .card-copy p,
+  .ingredient-feature__copy p,
+  .contact-panel p {
+    font-size: 0.98rem;
+    line-height: 1.7;
+  }
+
+  .button-row {
+    gap: 0.8rem;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .hero-metrics {
+    gap: 0.65rem;
+    padding-top: 0.4rem;
+  }
+
+  .hero-metrics div {
+    padding-top: 0.8rem;
+  }
+
+  .story-section {
+    padding-top: 2.4rem;
+  }
+
+  .about-grid,
+  .product-grid,
+  .gallery-grid {
+    gap: 0.95rem;
+  }
+
+  .gallery-card {
+    padding: 0.8rem;
+  }
+
+  .gallery-caption-card,
+  .product-card--frame {
+    min-height: auto;
+  }
+
   .feature-quote,
   .testimonial-card p,
   .testimonial-stage__quote p {
     font-size: 1.8rem;
+  }
+
+  .testimonial-stage__quote {
+    gap: 1rem;
+  }
+
+  .testimonial-stage__dots {
+    margin-top: 1.35rem;
+  }
+
+  .contact-shell {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero h1 {
+    font-size: clamp(2.9rem, 15vw, 4rem);
+  }
+
+  .hero-composition {
+    min-height: 28rem;
+  }
+
+  .composition-card--cover {
+    min-height: 17rem;
+    padding: 1.2rem;
+  }
+
+  .composition-card--cover h2 {
+    font-size: clamp(2.2rem, 10vw, 2.9rem);
+  }
+
+  .composition-card--book {
+    top: 10.6rem;
+  }
+
+  .composition-card--note {
+    width: 12.8rem;
+  }
+
+  .card-copy h3,
+  .principle-card h3,
+  .ingredient-card h3,
+  .product-card h3,
+  .ritual-card h3 {
+    font-size: 1.8rem;
+  }
+
+  .section-heading h2,
+  .contact-copy h2 {
+    font-size: clamp(2.05rem, 11vw, 3rem);
   }
 }
 
