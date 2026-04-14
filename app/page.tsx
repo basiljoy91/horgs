@@ -4,6 +4,20 @@ import { TestimonialsCarousel } from "./testimonials-carousel";
 const unsplashImage = (id: string, width = 1600) =>
   `https://unsplash.com/photos/${id}/download?force=true&w=${width}`;
 
+const photos = {
+  heroStillLife: unsplashImage("eZ0-0K1Bu4o", 1800),
+  herbJarMacro: unsplashImage("5qr75VKtikc", 1600),
+  leafFlatlay: unsplashImage("cU8ubgWFaMY", 1400),
+  ceramics: unsplashImage("Ms542g2coSg", 1600),
+  perfumeSheet: unsplashImage("ts0-pH6E4YA", 1400),
+  perfumeBottle: unsplashImage("Qvazzq5rPg4", 1400),
+  plantShadow: unsplashImage("oNGcNhm6e7c", 1400),
+  leafShadowWall: unsplashImage("SFukLke3WVI", 1400),
+  windowPlant: unsplashImage("xny3AP6kss4", 1400),
+  afternoonRoom: unsplashImage("Y6eDK4YdENY", 1400),
+  shadowLeavesTan: unsplashImage("mzBTIkHinRU", 1400),
+} as const;
+
 const navItems = [
   ["About", "#about"],
   ["Philosophy", "#philosophy"],
@@ -39,28 +53,28 @@ const ingredients = [
   {
     index: "01",
     title: "Tulsi",
-    photo: unsplashImage("eZ0-0K1Bu4o", 1200),
+    photo: photos.heroStillLife,
     copy:
       "Peppery brightness for clarity and calm. It brings lift to the palette and a sense of clean morning air.",
   },
   {
     index: "02",
     title: "Vetiver",
-    photo: unsplashImage("5qr75VKtikc", 1200),
+    photo: photos.herbJarMacro,
     copy:
       "Smoky roots and grounded warmth. This note informs the deeper moss and bark tones across the page.",
   },
   {
     index: "03",
     title: "Neroli",
-    photo: unsplashImage("QeYnt0Zsz7M", 1200),
+    photo: photos.leafFlatlay,
     copy:
       "Soft radiance and floral light. It adds the creamy contrast that keeps the brand from becoming too heavy.",
   },
   {
     index: "04",
     title: "Ashwagandha",
-    photo: unsplashImage("38ohDEr69QE", 1200),
+    photo: photos.shadowLeavesTan,
     copy:
       "Restorative depth for evening rituals. It shapes the slower, more intimate scenes later in the narrative.",
   },
@@ -70,7 +84,7 @@ const products = [
   {
     index: "01",
     title: "Signature blends",
-    photo: unsplashImage("Qvazzq5rPg4", 1400),
+    photo: photos.perfumeBottle,
     copy:
       "Herbal oils, teas, and room fragrances designed to anchor daily rituals in quiet confidence.",
     large: true,
@@ -78,7 +92,7 @@ const products = [
   {
     index: "02",
     title: "Private consultations",
-    photo: unsplashImage("xny3AP6kss4", 1400),
+    photo: photos.windowPlant,
     copy:
       "Guided sessions that translate lifestyle, scent memory, and mood into a more personal botanical routine.",
     large: false,
@@ -86,7 +100,7 @@ const products = [
   {
     index: "03",
     title: "Spatial styling",
-    photo: unsplashImage("BU25z-gf4N4", 1400),
+    photo: photos.ceramics,
     copy:
       "Visual and sensory direction for boutiques, retreats, and intimate wellness experiences.",
     large: false,
@@ -97,26 +111,58 @@ const galleryItems = [
   {
     className: "gallery-card gallery-card--tall",
     sceneClass: "gallery-scene gallery-scene--leaf",
-    photo: unsplashImage("cU8ubgWFaMY", 1400),
+    photo: photos.leafFlatlay,
+    tag: "Botanical still life",
     caption: "Leaves, paper, stone, and silence.",
   },
   {
     className: "gallery-card",
     sceneClass: "gallery-scene gallery-scene--vessels",
-    photo: unsplashImage("BU25z-gf4N4", 1400),
+    photo: photos.ceramics,
+    tag: "Ceramics",
     caption: "Ceramics warmed by afternoon light.",
   },
   {
     className: "gallery-card",
     sceneClass: "gallery-scene gallery-scene--shelf",
-    photo: unsplashImage("QeYnt0Zsz7M", 1400),
+    photo: photos.plantShadow,
+    tag: "Light study",
     caption: "Texture studies for packaging and room scent.",
   },
   {
     className: "gallery-card gallery-card--wide",
     sceneClass: "gallery-scene gallery-scene--editorial",
-    photo: unsplashImage("Qvazzq5rPg4", 1600),
+    photo: photos.perfumeBottle,
+    tag: "Editorial feature",
     caption: "Product storytelling staged like a magazine spread.",
+  },
+  {
+    className: "gallery-card",
+    sceneClass: "gallery-scene gallery-scene--shadow",
+    photo: photos.leafShadowWall,
+    tag: "Shadow play",
+    caption: "Plant shadows turning plain surfaces into atmosphere.",
+  },
+  {
+    className: "gallery-card",
+    sceneClass: "gallery-scene gallery-scene--window",
+    photo: photos.afternoonRoom,
+    tag: "Room mood",
+    caption: "Window light and quiet corners for the closing mood.",
+  },
+  {
+    className: "gallery-card gallery-card--portrait",
+    sceneClass: "gallery-scene gallery-scene--portrait",
+    photo: photos.perfumeSheet,
+    tag: "Object study",
+    caption: "Soft linen, product glow, and a slower still-life rhythm.",
+  },
+  {
+    className: "gallery-card",
+    sceneClass: "gallery-scene gallery-scene--detail",
+    photo: photos.heroStillLife,
+    tag: "Detail crop",
+    caption: "Close botanical textures give the section more depth.",
   },
 ] as const;
 
@@ -125,19 +171,19 @@ const testimonials = [
     quote:
       "The atmosphere feels like walking into a restorative ritual that has already been prepared for you.",
     author: "Creative direction client",
-    imageUrl: unsplashImage("eZ0-0K1Bu4o", 1600),
+    imageUrl: photos.heroStillLife,
   },
   {
     quote:
       "There is luxury here, but it never feels distant. The warmth is what makes the visual world memorable.",
     author: "Private consultation guest",
-    imageUrl: unsplashImage("BU25z-gf4N4", 1600),
+    imageUrl: photos.ceramics,
   },
   {
     quote:
       "Every section carries the same voice, so the whole website reads like one elegant presentation from start to finish.",
     author: "Brand strategy partner",
-    imageUrl: unsplashImage("xny3AP6kss4", 1600),
+    imageUrl: photos.windowPlant,
   },
 ] as const;
 
@@ -212,7 +258,7 @@ export default function Page() {
             <div
               className="hero-photo-panel"
               style={{
-                backgroundImage: `linear-gradient(rgba(245, 238, 228, 0.08), rgba(245, 238, 228, 0.08)), url("${unsplashImage("eZ0-0K1Bu4o", 1800)}")`,
+                backgroundImage: `linear-gradient(rgba(245, 238, 228, 0.08), rgba(245, 238, 228, 0.08)), url("${photos.heroStillLife}")`,
               }}
             />
             <div className="hero-depth hero-depth--one" data-mouse-depth="18" />
@@ -258,7 +304,7 @@ export default function Page() {
                 <div
                   className="book-page book-page--dark"
                   style={{
-                    backgroundImage: `linear-gradient(145deg, rgba(76, 88, 64, 0.78), rgba(103, 117, 88, 0.58)), url("${unsplashImage("QeYnt0Zsz7M", 1000)}")`,
+                    backgroundImage: `linear-gradient(145deg, rgba(76, 88, 64, 0.78), rgba(103, 117, 88, 0.58)), url("${photos.leafFlatlay}")`,
                   }}
                 >
                   <div className="book-ornament" />
@@ -277,6 +323,19 @@ export default function Page() {
                 forms held in calm motion.
               </p>
             </article>
+
+            <div
+              className="hero-photo-chip hero-photo-chip--shadow"
+              data-parallax="0.06"
+              data-mouse-depth="-10"
+              style={{ backgroundImage: `url("${photos.plantShadow}")` }}
+            />
+            <div
+              className="hero-photo-chip hero-photo-chip--bottle"
+              data-parallax="0.09"
+              data-mouse-depth="8"
+              style={{ backgroundImage: `url("${photos.perfumeSheet}")` }}
+            />
 
             <div className="hero-orb hero-orb--one" />
             <div className="hero-orb hero-orb--two" />
@@ -328,7 +387,7 @@ export default function Page() {
               <div
                 className="card-scene card-scene--studio"
                 style={{
-                  backgroundImage: `linear-gradient(140deg, rgba(86, 102, 74, 0.66) 0%, rgba(100, 115, 84, 0.6) 48%, rgba(191, 151, 118, 0.44) 48%, rgba(191, 151, 118, 0.52) 100%), url("${unsplashImage("BU25z-gf4N4", 1600)}")`,
+                  backgroundImage: `linear-gradient(140deg, rgba(86, 102, 74, 0.66) 0%, rgba(100, 115, 84, 0.6) 48%, rgba(191, 151, 118, 0.44) 48%, rgba(191, 151, 118, 0.52) 100%), url("${photos.ceramics}")`,
                 }}
               >
                 <div className="scene-arch" />
@@ -357,6 +416,13 @@ export default function Page() {
             >
               <span className="panel-index">02</span>
               <span className="framed-tag">Material direction</span>
+              <div
+                className="editorial-card__thumb"
+                aria-hidden="true"
+                style={{
+                  backgroundImage: `linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.06)), url("${photos.windowPlant}")`,
+                }}
+              />
               <p>
                 Large image fields should breathe beside compact text cards, so
                 the eye moves slowly through the page instead of scanning it as
@@ -386,9 +452,19 @@ export default function Page() {
 
           <div className="philosophy-stage" data-philosophy-pin>
             <div className="philosophy-frames" aria-hidden="true">
-              <span className="philosophy-frame philosophy-frame--one" />
+              <div
+                className="philosophy-frame philosophy-frame--one"
+                style={{
+                  backgroundImage: `linear-gradient(145deg, rgba(255,255,255,0.14), rgba(255,255,255,0.04)), url("${photos.leafShadowWall}")`,
+                }}
+              />
               <span className="philosophy-frame philosophy-frame--two" />
-              <span className="philosophy-frame philosophy-frame--three" />
+              <div
+                className="philosophy-frame philosophy-frame--three"
+                style={{
+                  backgroundImage: `linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02)), url("${photos.afternoonRoom}")`,
+                }}
+              />
             </div>
             <div className="philosophy-grid">
               {principles.map((item) => (
@@ -456,7 +532,7 @@ export default function Page() {
                 <div
                   className="ingredient-feature__image"
                   style={{
-                    backgroundImage: `linear-gradient(rgba(255, 250, 243, 0.08), rgba(255, 250, 243, 0.08)), url("${unsplashImage("5qr75VKtikc", 1600)}")`,
+                    backgroundImage: `linear-gradient(rgba(255, 250, 243, 0.08), rgba(255, 250, 243, 0.08)), url("${photos.herbJarMacro}")`,
                   }}
                 />
                 <div className="ingredient-feature__copy">
@@ -496,7 +572,7 @@ export default function Page() {
                 className="ritual-layer ritual-layer--base"
                 data-ritual-layer="0"
                 style={{
-                  backgroundImage: `linear-gradient(rgba(244, 237, 227, 0.08), rgba(244, 237, 227, 0.08)), url("${unsplashImage("eZ0-0K1Bu4o", 1800)}")`,
+                  backgroundImage: `linear-gradient(rgba(244, 237, 227, 0.08), rgba(244, 237, 227, 0.08)), url("${photos.heroStillLife}")`,
                 }}
               />
               <div className="ritual-layer ritual-layer--leaf-left" data-ritual-layer="1" />
@@ -505,7 +581,7 @@ export default function Page() {
                 className="ritual-layer ritual-layer--bottle"
                 data-ritual-layer="3"
                 style={{
-                  backgroundImage: `linear-gradient(160deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02)), url("${unsplashImage("Qvazzq5rPg4", 1200)}")`,
+                  backgroundImage: `linear-gradient(160deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02)), url("${photos.perfumeBottle}")`,
                 }}
               />
               <div className="ritual-layer ritual-layer--shadow" data-ritual-layer="4" />
@@ -588,6 +664,11 @@ export default function Page() {
                 Services and products should sit inside a composed spread, with
                 one dramatic anchor and supporting side panels.
               </p>
+              <div className="product-micro-gallery" aria-hidden="true">
+                <span style={{ backgroundImage: `url("${photos.perfumeSheet}")` }} />
+                <span style={{ backgroundImage: `url("${photos.ceramics}")` }} />
+                <span style={{ backgroundImage: `url("${photos.plantShadow}")` }} />
+              </div>
             </article>
           </div>
         </section>
@@ -617,8 +698,15 @@ export default function Page() {
                   style={{
                     backgroundImage: `linear-gradient(150deg, rgba(92, 104, 77, 0.3), rgba(215, 199, 182, 0.16)), url("${item.photo}")`,
                   }}
-                />
-                <figcaption>{item.caption}</figcaption>
+                >
+                  <span className="gallery-scene__tag">{item.tag}</span>
+                </div>
+                <figcaption>
+                  <span className="gallery-card__index">
+                    {String(galleryItems.indexOf(item) + 1).padStart(2, "0")}
+                  </span>
+                  <span>{item.caption}</span>
+                </figcaption>
               </figure>
             ))}
             <article className="gallery-caption-card" data-reveal data-panel-slide>
@@ -628,6 +716,16 @@ export default function Page() {
                 editorial frame so the gallery feels collected rather than
                 uniform.
               </p>
+              <div className="gallery-caption-card__stack" aria-hidden="true">
+                <span style={{ backgroundImage: `url("${photos.heroStillLife}")` }} />
+                <span style={{ backgroundImage: `url("${photos.perfumeSheet}")` }} />
+              </div>
+            </article>
+            <article className="gallery-mood-strip" data-reveal data-panel-slide aria-hidden="true">
+              <span style={{ backgroundImage: `url("${photos.leafFlatlay}")` }} />
+              <span style={{ backgroundImage: `url("${photos.ceramics}")` }} />
+              <span style={{ backgroundImage: `url("${photos.leafShadowWall}")` }} />
+              <span style={{ backgroundImage: `url("${photos.afternoonRoom}")` }} />
             </article>
           </div>
         </section>
@@ -664,7 +762,7 @@ export default function Page() {
             data-reveal
             data-panel-slide
             style={{
-              backgroundImage: `linear-gradient(145deg, rgba(255, 251, 246, 0.8), rgba(233, 224, 211, 0.58)), url("${unsplashImage("xny3AP6kss4", 1400)}")`,
+              backgroundImage: `linear-gradient(145deg, rgba(255, 251, 246, 0.8), rgba(233, 224, 211, 0.58)), url("${photos.windowPlant}")`,
             }}
           >
             <div className="contact-copy">
@@ -675,6 +773,11 @@ export default function Page() {
                 here we can deepen the motion, add real photography, and turn
                 the page into a fully cinematic experience.
               </p>
+              <div className="contact-photo-row" aria-hidden="true">
+                <span style={{ backgroundImage: `url("${photos.perfumeBottle}")` }} />
+                <span style={{ backgroundImage: `url("${photos.ceramics}")` }} />
+                <span style={{ backgroundImage: `url("${photos.leafShadowWall}")` }} />
+              </div>
             </div>
 
             <div className="contact-panel">
