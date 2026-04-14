@@ -1,0 +1,20 @@
+<svg width="760" height="980" viewBox="0 0 760 980" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="leafR1" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#C7D2BA" stop-opacity="0.66"/>
+      <stop offset="1" stop-color="#5A684B" stop-opacity="0.92"/>
+    </linearGradient>
+    <linearGradient id="leafR2" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#A7B694" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#4C5940" stop-opacity="0.9"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(760 0) scale(-1 1)" opacity="0.94">
+    <path d="M46 616C18 472 38 304 138 90C304 208 356 486 224 712L46 616Z" fill="url(#leafR1)"/>
+    <path d="M176 816C112 644 132 450 262 216C448 364 496 654 356 904L176 816Z" fill="url(#leafR2)"/>
+    <path d="M350 524C316 420 334 292 432 110C562 224 610 430 532 620L350 524Z" fill="url(#leafR1)"/>
+    <path d="M130 754C194 626 228 496 246 306" stroke="#EFF6EA" stroke-opacity="0.22" stroke-width="6"/>
+    <path d="M276 884C352 724 388 556 394 298" stroke="#EEF7E8" stroke-opacity="0.18" stroke-width="6"/>
+    <path d="M444 584C484 472 500 364 494 208" stroke="#F4FAEF" stroke-opacity="0.18" stroke-width="5"/>
+  </g>
+</svg>

@@ -1,0 +1,21 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="lightA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(400 250) rotate(23) scale(440 240)">
+      <stop stop-color="#FFF8EB" stop-opacity="0.68"/>
+      <stop offset="1" stop-color="#FFF8EB" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="lightB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1180 520) rotate(-14) scale(520 280)">
+      <stop stop-color="#E9F0E0" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#E9F0E0" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="transparent"/>
+  <ellipse cx="400" cy="250" rx="440" ry="240" fill="url(#lightA)">
+    <animate attributeName="cx" values="400;470;400" dur="18s" repeatCount="indefinite"/>
+    <animate attributeName="cy" values="250;220;250" dur="18s" repeatCount="indefinite"/>
+  </ellipse>
+  <ellipse cx="1180" cy="520" rx="520" ry="280" fill="url(#lightB)">
+    <animate attributeName="cx" values="1180;1120;1180" dur="20s" repeatCount="indefinite"/>
+    <animate attributeName="cy" values="520;560;520" dur="20s" repeatCount="indefinite"/>
+  </ellipse>
+</svg>

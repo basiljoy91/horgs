@@ -1,0 +1,24 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="leafA" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#B9C6AA" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#5B684C" stop-opacity="0.94"/>
+    </linearGradient>
+    <linearGradient id="leafB" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#D2DCC7" stop-opacity="0.58"/>
+      <stop offset="1" stop-color="#728063" stop-opacity="0.86"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="transparent"/>
+  <g opacity="0.8">
+    <path d="M78 752C18 578 26 354 152 114C344 246 410 542 238 828L78 752Z" fill="url(#leafA)">
+      <animateTransform attributeName="transform" type="rotate" values="-3 180 520;2 180 520;-3 180 520" dur="12s" repeatCount="indefinite"/>
+    </path>
+    <path d="M928 650C890 496 918 336 1030 124C1168 240 1208 492 1112 702L928 650Z" fill="url(#leafB)">
+      <animateTransform attributeName="transform" type="rotate" values="4 1030 470;-3 1030 470;4 1030 470" dur="14s" repeatCount="indefinite"/>
+    </path>
+    <path d="M484 858C430 706 440 540 544 320C702 432 756 676 640 878L484 858Z" fill="url(#leafA)" opacity="0.88">
+      <animateTransform attributeName="transform" type="translate" values="0 0;0 -12;0 0" dur="9s" repeatCount="indefinite"/>
+    </path>
+  </g>
+</svg>

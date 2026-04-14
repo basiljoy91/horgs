@@ -1,4 +1,4 @@
-import { RevealEffects } from "./reveal-effects";
+import { Reveal } from "./reveal";
 
 const navItems = [
   ["About", "#about"],
@@ -103,10 +103,12 @@ const testimonials = [
 export default function Page() {
   return (
     <>
-      <RevealEffects />
       <div className="page-noise" aria-hidden="true" />
       <div className="page-glow page-glow--left" aria-hidden="true" />
       <div className="page-glow page-glow--right" aria-hidden="true" />
+      <div className="ambient-loop ambient-loop--light" aria-hidden="true" />
+      <div className="ambient-loop ambient-loop--botanical" aria-hidden="true" />
+      <div className="floating-particles" aria-hidden="true" />
 
       <header className="topbar section-shell" data-reveal>
         <a className="brandmark" href="#hero">
@@ -124,40 +126,49 @@ export default function Page() {
       <main>
         <section className="hero section-shell" id="hero">
           <div className="hero-copy">
-            <p className="eyebrow" data-reveal>
-              Luxury herbal brand story
-            </p>
-            <h1 data-reveal>Herbal rituals shaped like quiet cinema.</h1>
-            <p className="hero-lede" data-reveal>
-              Herbs Atelier turns plant intelligence into sensorial products,
-              restorative consultations, and serene spaces that feel composed
-              rather than decorated.
-            </p>
-            <div className="button-row" data-reveal>
-              <a className="btn btn--primary" href="#products">
-                Explore offerings
-              </a>
-              <a className="btn btn--ghost" href="#contact">
-                Book a consultation
-              </a>
-            </div>
-            <dl className="hero-metrics" data-reveal>
-              <div>
-                <dt>Story</dt>
-                <dd>From wild harvest to intimate ritual</dd>
+            <Reveal delay={0.04}>
+              <p className="eyebrow">Luxury herbal brand story</p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h1>Herbal rituals shaped like quiet cinema.</h1>
+            </Reveal>
+            <Reveal delay={0.16}>
+              <p className="hero-lede">
+                Herbs Atelier turns plant intelligence into sensorial products,
+                restorative consultations, and serene spaces that feel composed
+                rather than decorated.
+              </p>
+            </Reveal>
+            <Reveal delay={0.22}>
+              <div className="button-row">
+                <a className="btn btn--primary" href="#products">
+                  Explore offerings
+                </a>
+                <a className="btn btn--ghost" href="#contact">
+                  Book a consultation
+                </a>
               </div>
-              <div>
-                <dt>Focus</dt>
-                <dd>Botanicals, stillness, and modern care</dd>
-              </div>
-              <div>
-                <dt>Approach</dt>
-                <dd>Editorial presentation with a warm pulse</dd>
-              </div>
-            </dl>
+            </Reveal>
+            <Reveal delay={0.28}>
+              <dl className="hero-metrics">
+                <div>
+                  <dt>Story</dt>
+                  <dd>From wild harvest to intimate ritual</dd>
+                </div>
+                <div>
+                  <dt>Focus</dt>
+                  <dd>Botanicals, stillness, and modern care</dd>
+                </div>
+                <div>
+                  <dt>Approach</dt>
+                  <dd>Editorial presentation with a warm pulse</dd>
+                </div>
+              </dl>
+            </Reveal>
           </div>
 
           <div className="hero-composition" aria-hidden="true">
+            <div className="hero-photo-panel" />
             <article
               className="composition-card composition-card--cover"
               data-parallax="0.14"
@@ -211,20 +222,27 @@ export default function Page() {
         </section>
 
         <section className="story-section section-shell" id="about">
-          <div className="section-heading" data-reveal>
-            <p className="eyebrow">About</p>
-            <h2>A house of herbs designed as an elegant invitation.</h2>
-            <p className="section-copy">
-              This brand story starts in a quiet studio where vessels, leaves,
-              oils, and paper references are arranged like a living still life.
-              Every choice should feel tactile, intentional, and softly
-              luxurious.
-            </p>
-          </div>
+          <Reveal className="section-heading">
+            <div data-reveal>
+              <p className="eyebrow">About</p>
+              <h2>A house of herbs designed as an elegant invitation.</h2>
+              <p className="section-copy">
+                This brand story starts in a quiet studio where vessels, leaves,
+                oils, and paper references are arranged like a living still
+                life. Every choice should feel tactile, intentional, and softly
+                luxurious.
+              </p>
+            </div>
+          </Reveal>
 
           <div className="about-grid">
-            <article className="editorial-card editorial-card--statement" data-reveal>
+            <article
+              className="editorial-card editorial-card--statement"
+              data-reveal
+              data-panel-slide
+            >
               <span className="panel-index">01</span>
+              <span className="framed-tag">Studio note</span>
               <p className="feature-quote">
                 “Herbs Atelier is not only a wellness label. It is a slower way
                 of entering the room.”
@@ -235,7 +253,11 @@ export default function Page() {
               </p>
             </article>
 
-            <article className="editorial-card editorial-card--studio" data-reveal>
+            <article
+              className="editorial-card editorial-card--studio"
+              data-reveal
+              data-panel-slide
+            >
               <div className="card-scene card-scene--studio">
                 <div className="scene-arch" />
                 <div className="scene-vessel scene-vessel--tall" />
@@ -247,6 +269,7 @@ export default function Page() {
                 </div>
               </div>
               <div className="card-copy">
+                <span className="framed-tag">Composition</span>
                 <h3>Editorial stillness</h3>
                 <p>
                   Build every section like a styled spread, with clear focal
@@ -254,71 +277,42 @@ export default function Page() {
                 </p>
               </div>
             </article>
+
+            <article
+              className="editorial-card editorial-card--note"
+              data-reveal
+              data-panel-slide
+            >
+              <span className="panel-index">02</span>
+              <span className="framed-tag">Material direction</span>
+              <p>
+                Large image fields should breathe beside compact text cards, so
+                the eye moves slowly through the page instead of scanning it as
+                a normal website grid.
+              </p>
+            </article>
           </div>
         </section>
 
         <section className="story-section section-shell" id="philosophy">
-          <div className="section-heading" data-reveal>
-            <p className="eyebrow">Philosophy</p>
-            <h2>Three principles guide the entire experience.</h2>
-            <p className="section-copy">
-              The site should move like an expensive presentation transformed
-              into a living page: calm transitions, sculpted layouts, and
-              details that reward a slower scroll.
-            </p>
-          </div>
+          <Reveal className="section-heading">
+            <div data-reveal>
+              <p className="eyebrow">Philosophy</p>
+              <h2>Three principles guide the entire experience.</h2>
+              <p className="section-copy">
+                The site should move like an expensive presentation transformed
+                into a living page: calm transitions, sculpted layouts, and
+                details that reward a slower scroll.
+              </p>
+            </div>
+          </Reveal>
 
           <div className="philosophy-grid">
             {principles.map((item) => (
-              <article className="principle-card" data-reveal key={item.index}>
-                <span className="panel-index">{item.index}</span>
-                <h3>{item.title}</h3>
-                <p>{item.copy}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="story-section section-shell" id="ingredients">
-          <div className="ingredients-shell">
-            <div className="section-heading" data-reveal>
-              <p className="eyebrow">Ingredients</p>
-              <h2>The material palette begins with plants that hold emotion.</h2>
-              <p className="section-copy">
-                Ingredient storytelling turns the brand from pretty to
-                persuasive. These hero botanicals shape the tone, color, and
-                sensory profile of the entire site.
-              </p>
-            </div>
-
-            <div className="ingredient-grid">
-              {ingredients.map((item) => (
-                <article className="ingredient-card" data-reveal key={item.index}>
-                  <span className="panel-index">{item.index}</span>
-                  <h3>{item.title}</h3>
-                  <p>{item.copy}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="story-section section-shell" id="products">
-          <div className="section-heading" data-reveal>
-            <p className="eyebrow">Products &amp; Services</p>
-            <h2>Offerings presented as chapters of a complete ritual life.</h2>
-            <p className="section-copy">
-              Instead of listing services in a plain grid, present them like a
-              curated collection with clear hierarchy and a strong sense of
-              mood.
-            </p>
-          </div>
-
-          <div className="product-grid">
-            {products.map((item) => (
               <article
-                className={`product-card${item.large ? " product-card--large" : ""}`}
+                className="principle-card"
                 data-reveal
+                data-panel-slide
                 key={item.index}
               >
                 <span className="panel-index">{item.index}</span>
@@ -326,53 +320,158 @@ export default function Page() {
                 <p>{item.copy}</p>
               </article>
             ))}
+            <article
+              className="principle-card principle-card--quote"
+              data-reveal
+              data-panel-slide
+            >
+              <span className="framed-tag">Editorial rule</span>
+              <p className="principle-quote">
+                Let silence do part of the storytelling.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section className="story-section section-shell" id="ingredients">
+          <div className="ingredients-shell">
+            <Reveal className="section-heading">
+              <div data-reveal>
+                <p className="eyebrow">Ingredients</p>
+                <h2>The material palette begins with plants that hold emotion.</h2>
+                <p className="section-copy">
+                  Ingredient storytelling turns the brand from pretty to
+                  persuasive. These hero botanicals shape the tone, color, and
+                  sensory profile of the entire site.
+                </p>
+              </div>
+            </Reveal>
+
+            <div className="ingredient-grid">
+              {ingredients.map((item) => (
+                <article
+                  className="ingredient-card"
+                  data-reveal
+                  data-panel-slide
+                  key={item.index}
+                >
+                  <span className="panel-index">{item.index}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.copy}</p>
+                </article>
+              ))}
+              <article className="ingredient-feature" data-reveal data-panel-slide>
+                <div className="ingredient-feature__image" />
+                <div className="ingredient-feature__copy">
+                  <span className="framed-tag">Palette study</span>
+                  <h3>Each botanical changes the room around it.</h3>
+                  <p>
+                    Ingredients should feel spatial, almost cinematic, with one
+                    anchored composition card balancing the text-driven list.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section className="story-section section-shell" id="products">
+          <Reveal className="section-heading">
+            <div data-reveal>
+              <p className="eyebrow">Products &amp; Services</p>
+              <h2>Offerings presented as chapters of a complete ritual life.</h2>
+              <p className="section-copy">
+                Instead of listing services in a plain grid, present them like a
+                curated collection with clear hierarchy and a strong sense of
+                mood.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="product-grid">
+            {products.map((item) => (
+              <article
+                className={`product-card${item.large ? " product-card--large" : ""}`}
+                data-reveal
+                data-panel-slide
+                key={item.index}
+              >
+                <span className="panel-index">{item.index}</span>
+                <h3>{item.title}</h3>
+                <p>{item.copy}</p>
+              </article>
+            ))}
+            <article className="product-card product-card--frame" data-reveal data-panel-slide>
+              <span className="framed-tag">Presentation</span>
+              <p className="product-frame-copy">
+                Services and products should sit inside a composed spread, with
+                one dramatic anchor and supporting side panels.
+              </p>
+            </article>
           </div>
         </section>
 
         <section className="story-section section-shell" id="gallery">
-          <div className="section-heading" data-reveal>
-            <p className="eyebrow">Gallery</p>
-            <h2>A collage of objects, textures, and ritual moments.</h2>
-            <p className="section-copy">
-              This section gives the site its visual release: a curated mosaic
-              that feels like torn pages from a refined herbal journal.
-            </p>
-          </div>
+          <Reveal className="section-heading">
+            <div data-reveal>
+              <p className="eyebrow">Gallery</p>
+              <h2>A collage of objects, textures, and ritual moments.</h2>
+              <p className="section-copy">
+                This section gives the site its visual release: a curated mosaic
+                that feels like torn pages from a refined herbal journal.
+              </p>
+            </div>
+          </Reveal>
 
           <div className="gallery-grid">
-            <figure className="gallery-card gallery-card--tall" data-reveal>
+            <figure className="gallery-card gallery-card--tall" data-reveal data-panel-slide>
               <div className="gallery-scene gallery-scene--leaf" />
               <figcaption>Leaves, paper, stone, and silence.</figcaption>
             </figure>
-            <figure className="gallery-card" data-reveal>
+            <figure className="gallery-card" data-reveal data-panel-slide>
               <div className="gallery-scene gallery-scene--vessels" />
               <figcaption>Ceramics warmed by afternoon light.</figcaption>
             </figure>
-            <figure className="gallery-card" data-reveal>
+            <figure className="gallery-card" data-reveal data-panel-slide>
               <div className="gallery-scene gallery-scene--shelf" />
               <figcaption>Texture studies for packaging and room scent.</figcaption>
             </figure>
-            <figure className="gallery-card gallery-card--wide" data-reveal>
+            <figure className="gallery-card gallery-card--wide" data-reveal data-panel-slide>
               <div className="gallery-scene gallery-scene--editorial" />
               <figcaption>Product storytelling staged like a magazine spread.</figcaption>
             </figure>
+            <article className="gallery-caption-card" data-reveal data-panel-slide>
+              <span className="framed-tag">Gallery note</span>
+              <p>
+                Mix tall still lifes, quieter object studies, and one wide
+                editorial frame so the gallery feels collected rather than
+                uniform.
+              </p>
+            </article>
           </div>
         </section>
 
         <section className="story-section section-shell" id="testimonials">
-          <div className="section-heading" data-reveal>
-            <p className="eyebrow">Testimonials</p>
-            <h2>Voices that match the softness and confidence of the brand.</h2>
-            <p className="section-copy">
-              Testimonials should feel like refined margin notes rather than
-              loud social proof blocks. They support the mood instead of
-              interrupting it.
-            </p>
-          </div>
+          <Reveal className="section-heading">
+            <div data-reveal>
+              <p className="eyebrow">Testimonials</p>
+              <h2>Voices that match the softness and confidence of the brand.</h2>
+              <p className="section-copy">
+                Testimonials should feel like refined margin notes rather than
+                loud social proof blocks. They support the mood instead of
+                interrupting it.
+              </p>
+            </div>
+          </Reveal>
 
           <div className="testimonial-grid">
             {testimonials.map((item) => (
-              <blockquote className="testimonial-card" data-reveal key={item.author}>
+              <blockquote
+                className="testimonial-card"
+                data-reveal
+                data-panel-slide
+                key={item.author}
+              >
                 <p>“{item.quote}”</p>
                 <footer>{item.author}</footer>
               </blockquote>
@@ -381,7 +480,7 @@ export default function Page() {
         </section>
 
         <section className="story-section story-section--final section-shell" id="contact">
-          <div className="contact-shell" data-reveal>
+          <div className="contact-shell" data-reveal data-panel-slide>
             <div className="contact-copy">
               <p className="eyebrow">Contact</p>
               <h2>Ready to turn the full herbal world into an immersive site?</h2>

@@ -1,0 +1,89 @@
+<svg width="1600" height="1100" viewBox="0 0 1600 1100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="180" y1="80" x2="1410" y2="980" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F4EBDD"/>
+      <stop offset="0.48" stop-color="#DCCFBE"/>
+      <stop offset="1" stop-color="#C2B39D"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(362 278) rotate(39.8) scale(555 431)">
+      <stop stop-color="#FFF9F2"/>
+      <stop offset="1" stop-color="#FFF9F2" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="leafDark" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#93A07E"/>
+      <stop offset="1" stop-color="#566347"/>
+    </linearGradient>
+    <linearGradient id="leafSoft" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#B8C4AA"/>
+      <stop offset="1" stop-color="#6B7859"/>
+    </linearGradient>
+    <radialGradient id="bowl" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(0.42 0.35) scale(1 1)">
+      <stop stop-color="#D5B497"/>
+      <stop offset="1" stop-color="#8E694F"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="26" stdDeviation="28" flood-color="#3B342C" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="1100" fill="url(#bg)"/>
+  <rect width="1600" height="1100" fill="url(#glow)"/>
+
+  <g opacity="0.28">
+    <rect x="95" y="110" width="510" height="760" rx="28" fill="#F7F1E8"/>
+    <rect x="580" y="160" width="320" height="620" rx="22" fill="#E7DBC9"/>
+    <rect x="940" y="210" width="500" height="560" rx="28" fill="#D2C2AE"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <circle cx="1222" cy="244" r="94" fill="#B78A68"/>
+    <circle cx="1222" cy="244" r="70" fill="url(#bowl)"/>
+    <circle cx="1222" cy="244" r="38" fill="#6E4D35" opacity="0.78"/>
+  </g>
+
+  <g opacity="0.8">
+    <ellipse cx="1182" cy="874" rx="216" ry="58" fill="#8C7B66" opacity="0.14"/>
+    <ellipse cx="436" cy="896" rx="176" ry="48" fill="#8C7B66" opacity="0.12"/>
+  </g>
+
+  <g transform="translate(68 232) rotate(-8)">
+    <path d="M0 286C32 162 104 62 228 0C230 137 146 275 0 286Z" fill="url(#leafDark)"/>
+    <path d="M20 250C74 168 132 102 205 42" stroke="#DCE8D0" stroke-opacity="0.4" stroke-width="4"/>
+  </g>
+
+  <g transform="translate(192 76) rotate(18)">
+    <path d="M0 364C44 205 156 58 328 0C316 206 190 344 0 364Z" fill="url(#leafSoft)"/>
+    <path d="M42 306C126 220 194 134 282 46" stroke="#EEF4E5" stroke-opacity="0.42" stroke-width="4"/>
+  </g>
+
+  <g transform="translate(1130 662) rotate(13)">
+    <path d="M0 228C31 114 110 28 250 0C240 133 150 228 0 228Z" fill="url(#leafSoft)"/>
+    <path d="M34 188C84 130 146 80 210 32" stroke="#F4F9EE" stroke-opacity="0.38" stroke-width="4"/>
+  </g>
+
+  <g transform="translate(1310 96) rotate(42)">
+    <path d="M0 172C20 88 74 21 186 0C176 102 108 173 0 172Z" fill="url(#leafDark)"/>
+    <path d="M18 144C55 104 100 64 157 26" stroke="#DCE8D0" stroke-opacity="0.42" stroke-width="3.5"/>
+  </g>
+
+  <g transform="translate(672 788) rotate(-4)">
+    <path d="M0 198C22 102 78 26 196 0C188 116 114 196 0 198Z" fill="url(#leafDark)" opacity="0.94"/>
+    <path d="M20 164C62 118 108 74 166 28" stroke="#DCE8D0" stroke-opacity="0.34" stroke-width="3.5"/>
+  </g>
+
+  <g transform="translate(964 126) rotate(-8)">
+    <rect x="0" y="0" width="172" height="222" rx="22" fill="#EFE5D8"/>
+    <rect x="24" y="20" width="124" height="182" rx="16" fill="#7B876A"/>
+  </g>
+
+  <g transform="translate(858 414)">
+    <rect x="0" y="0" width="318" height="234" rx="24" fill="#C49976"/>
+    <rect x="28" y="26" width="116" height="184" rx="20" fill="#586648"/>
+    <rect x="166" y="26" width="124" height="110" rx="18" fill="#E8DED1"/>
+  </g>
+
+  <g transform="translate(278 700)">
+    <rect x="0" y="0" width="178" height="250" rx="28" fill="#F5EEE4"/>
+    <rect x="24" y="24" width="130" height="198" rx="22" fill="#D4C3AF"/>
+  </g>
+</svg>
