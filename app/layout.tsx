@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
+import "./runtime-shims";
 import "./globals.css";
 import { MotionSystem } from "./motion-system";
 
