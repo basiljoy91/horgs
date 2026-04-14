@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 type Testimonial = {
   quote: string;
   author: string;
-  imageClass: string;
+  imageUrl: string;
 };
 
 export function TestimonialsCarousel({
@@ -28,7 +28,13 @@ export function TestimonialsCarousel({
 
   return (
     <section className="testimonial-stage" aria-label="Client testimonials">
-      <div className={`testimonial-stage__backdrop ${activeItem.imageClass}`} aria-hidden="true" />
+      <div
+        className="testimonial-stage__backdrop"
+        aria-hidden="true"
+        style={{
+          backgroundImage: `linear-gradient(160deg, rgba(64, 70, 58, 0.74), rgba(196, 162, 130, 0.3)), url("${activeItem.imageUrl}")`,
+        }}
+      />
 
       <div className="testimonial-stage__panel">
         <AnimatePresence mode="wait">

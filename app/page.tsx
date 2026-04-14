@@ -1,6 +1,9 @@
 import { Reveal } from "./reveal";
 import { TestimonialsCarousel } from "./testimonials-carousel";
 
+const unsplashImage = (id: string, width = 1600) =>
+  `https://unsplash.com/photos/${id}/download?force=true&w=${width}`;
+
 const navItems = [
   ["About", "#about"],
   ["Philosophy", "#philosophy"],
@@ -36,24 +39,28 @@ const ingredients = [
   {
     index: "01",
     title: "Tulsi",
+    photo: unsplashImage("eZ0-0K1Bu4o", 1200),
     copy:
       "Peppery brightness for clarity and calm. It brings lift to the palette and a sense of clean morning air.",
   },
   {
     index: "02",
     title: "Vetiver",
+    photo: unsplashImage("5qr75VKtikc", 1200),
     copy:
       "Smoky roots and grounded warmth. This note informs the deeper moss and bark tones across the page.",
   },
   {
     index: "03",
     title: "Neroli",
+    photo: unsplashImage("QeYnt0Zsz7M", 1200),
     copy:
       "Soft radiance and floral light. It adds the creamy contrast that keeps the brand from becoming too heavy.",
   },
   {
     index: "04",
     title: "Ashwagandha",
+    photo: unsplashImage("38ohDEr69QE", 1200),
     copy:
       "Restorative depth for evening rituals. It shapes the slower, more intimate scenes later in the narrative.",
   },
@@ -63,6 +70,7 @@ const products = [
   {
     index: "01",
     title: "Signature blends",
+    photo: unsplashImage("Qvazzq5rPg4", 1400),
     copy:
       "Herbal oils, teas, and room fragrances designed to anchor daily rituals in quiet confidence.",
     large: true,
@@ -70,6 +78,7 @@ const products = [
   {
     index: "02",
     title: "Private consultations",
+    photo: unsplashImage("xny3AP6kss4", 1400),
     copy:
       "Guided sessions that translate lifestyle, scent memory, and mood into a more personal botanical routine.",
     large: false,
@@ -77,9 +86,37 @@ const products = [
   {
     index: "03",
     title: "Spatial styling",
+    photo: unsplashImage("BU25z-gf4N4", 1400),
     copy:
       "Visual and sensory direction for boutiques, retreats, and intimate wellness experiences.",
     large: false,
+  },
+] as const;
+
+const galleryItems = [
+  {
+    className: "gallery-card gallery-card--tall",
+    sceneClass: "gallery-scene gallery-scene--leaf",
+    photo: unsplashImage("cU8ubgWFaMY", 1400),
+    caption: "Leaves, paper, stone, and silence.",
+  },
+  {
+    className: "gallery-card",
+    sceneClass: "gallery-scene gallery-scene--vessels",
+    photo: unsplashImage("BU25z-gf4N4", 1400),
+    caption: "Ceramics warmed by afternoon light.",
+  },
+  {
+    className: "gallery-card",
+    sceneClass: "gallery-scene gallery-scene--shelf",
+    photo: unsplashImage("QeYnt0Zsz7M", 1400),
+    caption: "Texture studies for packaging and room scent.",
+  },
+  {
+    className: "gallery-card gallery-card--wide",
+    sceneClass: "gallery-scene gallery-scene--editorial",
+    photo: unsplashImage("Qvazzq5rPg4", 1600),
+    caption: "Product storytelling staged like a magazine spread.",
   },
 ] as const;
 
@@ -88,19 +125,19 @@ const testimonials = [
     quote:
       "The atmosphere feels like walking into a restorative ritual that has already been prepared for you.",
     author: "Creative direction client",
-    imageClass: "testimonial-stage__backdrop--sage",
+    imageUrl: unsplashImage("eZ0-0K1Bu4o", 1600),
   },
   {
     quote:
       "There is luxury here, but it never feels distant. The warmth is what makes the visual world memorable.",
     author: "Private consultation guest",
-    imageClass: "testimonial-stage__backdrop--clay",
+    imageUrl: unsplashImage("BU25z-gf4N4", 1600),
   },
   {
     quote:
       "Every section carries the same voice, so the whole website reads like one elegant presentation from start to finish.",
     author: "Brand strategy partner",
-    imageClass: "testimonial-stage__backdrop--cream",
+    imageUrl: unsplashImage("xny3AP6kss4", 1600),
   },
 ] as const;
 
@@ -172,7 +209,12 @@ export default function Page() {
           </div>
 
           <div className="hero-composition" aria-hidden="true">
-            <div className="hero-photo-panel" />
+            <div
+              className="hero-photo-panel"
+              style={{
+                backgroundImage: `linear-gradient(rgba(245, 238, 228, 0.08), rgba(245, 238, 228, 0.08)), url("${unsplashImage("eZ0-0K1Bu4o", 1800)}")`,
+              }}
+            />
             <div className="hero-depth hero-depth--one" data-mouse-depth="18" />
             <div className="hero-depth hero-depth--two" data-mouse-depth="-12" />
             <div className="hero-depth hero-depth--three" data-mouse-depth="24" />
@@ -213,7 +255,12 @@ export default function Page() {
                   <p>Ingredients</p>
                   <p>Products</p>
                 </div>
-                <div className="book-page book-page--dark">
+                <div
+                  className="book-page book-page--dark"
+                  style={{
+                    backgroundImage: `linear-gradient(145deg, rgba(76, 88, 64, 0.78), rgba(103, 117, 88, 0.58)), url("${unsplashImage("QeYnt0Zsz7M", 1000)}")`,
+                  }}
+                >
                   <div className="book-ornament" />
                 </div>
               </div>
@@ -278,7 +325,12 @@ export default function Page() {
               data-reveal
               data-panel-slide
             >
-              <div className="card-scene card-scene--studio">
+              <div
+                className="card-scene card-scene--studio"
+                style={{
+                  backgroundImage: `linear-gradient(140deg, rgba(86, 102, 74, 0.66) 0%, rgba(100, 115, 84, 0.6) 48%, rgba(191, 151, 118, 0.44) 48%, rgba(191, 151, 118, 0.52) 100%), url("${unsplashImage("BU25z-gf4N4", 1600)}")`,
+                }}
+              >
                 <div className="scene-arch" />
                 <div className="scene-vessel scene-vessel--tall" />
                 <div className="scene-vessel scene-vessel--small" />
@@ -391,6 +443,9 @@ export default function Page() {
                   data-reveal
                   data-panel-slide
                   key={item.index}
+                  style={{
+                    backgroundImage: `linear-gradient(155deg, rgba(86, 99, 72, 0.78), rgba(88, 72, 57, 0.54)), url("${item.photo}")`,
+                  }}
                 >
                   <span className="panel-index">{item.index}</span>
                   <h3>{item.title}</h3>
@@ -398,7 +453,12 @@ export default function Page() {
                 </article>
               ))}
               <article className="ingredient-feature" data-reveal data-panel-slide>
-                <div className="ingredient-feature__image" />
+                <div
+                  className="ingredient-feature__image"
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(255, 250, 243, 0.08), rgba(255, 250, 243, 0.08)), url("${unsplashImage("5qr75VKtikc", 1600)}")`,
+                  }}
+                />
                 <div className="ingredient-feature__copy">
                   <span className="framed-tag">Palette study</span>
                   <h3>Each botanical changes the room around it.</h3>
@@ -432,10 +492,22 @@ export default function Page() {
 
           <div className="ritual-stage" data-ritual-pin>
             <div className="ritual-stage__visual" aria-hidden="true">
-              <div className="ritual-layer ritual-layer--base" data-ritual-layer="0" />
+              <div
+                className="ritual-layer ritual-layer--base"
+                data-ritual-layer="0"
+                style={{
+                  backgroundImage: `linear-gradient(rgba(244, 237, 227, 0.08), rgba(244, 237, 227, 0.08)), url("${unsplashImage("eZ0-0K1Bu4o", 1800)}")`,
+                }}
+              />
               <div className="ritual-layer ritual-layer--leaf-left" data-ritual-layer="1" />
               <div className="ritual-layer ritual-layer--leaf-right" data-ritual-layer="2" />
-              <div className="ritual-layer ritual-layer--bottle" data-ritual-layer="3" />
+              <div
+                className="ritual-layer ritual-layer--bottle"
+                data-ritual-layer="3"
+                style={{
+                  backgroundImage: `linear-gradient(160deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02)), url("${unsplashImage("Qvazzq5rPg4", 1200)}")`,
+                }}
+              />
               <div className="ritual-layer ritual-layer--shadow" data-ritual-layer="4" />
             </div>
 
@@ -500,13 +572,10 @@ export default function Page() {
                 key={item.index}
               >
                 <div
-                  className={`product-card__media ${
-                    item.index === "01"
-                      ? "product-card__media--blend"
-                      : item.index === "02"
-                        ? "product-card__media--consult"
-                        : "product-card__media--space"
-                  }`}
+                  className="product-card__media"
+                  style={{
+                    backgroundImage: `linear-gradient(160deg, rgba(73, 85, 61, 0.18), rgba(255, 255, 255, 0.03)), url("${item.photo}")`,
+                  }}
                 />
                 <span className="panel-index">{item.index}</span>
                 <h3>{item.title}</h3>
@@ -541,22 +610,17 @@ export default function Page() {
           </Reveal>
 
           <div className="gallery-grid">
-            <figure className="gallery-card gallery-card--tall" data-reveal data-panel-slide>
-              <div className="gallery-scene gallery-scene--leaf" />
-              <figcaption>Leaves, paper, stone, and silence.</figcaption>
-            </figure>
-            <figure className="gallery-card" data-reveal data-panel-slide>
-              <div className="gallery-scene gallery-scene--vessels" />
-              <figcaption>Ceramics warmed by afternoon light.</figcaption>
-            </figure>
-            <figure className="gallery-card" data-reveal data-panel-slide>
-              <div className="gallery-scene gallery-scene--shelf" />
-              <figcaption>Texture studies for packaging and room scent.</figcaption>
-            </figure>
-            <figure className="gallery-card gallery-card--wide" data-reveal data-panel-slide>
-              <div className="gallery-scene gallery-scene--editorial" />
-              <figcaption>Product storytelling staged like a magazine spread.</figcaption>
-            </figure>
+            {galleryItems.map((item) => (
+              <figure className={item.className} data-reveal data-panel-slide key={item.caption}>
+                <div
+                  className={item.sceneClass}
+                  style={{
+                    backgroundImage: `linear-gradient(150deg, rgba(92, 104, 77, 0.3), rgba(215, 199, 182, 0.16)), url("${item.photo}")`,
+                  }}
+                />
+                <figcaption>{item.caption}</figcaption>
+              </figure>
+            ))}
             <article className="gallery-caption-card" data-reveal data-panel-slide>
               <span className="framed-tag">Gallery note</span>
               <p>
@@ -595,7 +659,14 @@ export default function Page() {
             <span className="section-divider__leaf" />
             <span />
           </div>
-          <div className="contact-shell" data-reveal data-panel-slide>
+          <div
+            className="contact-shell"
+            data-reveal
+            data-panel-slide
+            style={{
+              backgroundImage: `linear-gradient(145deg, rgba(255, 251, 246, 0.8), rgba(233, 224, 211, 0.58)), url("${unsplashImage("xny3AP6kss4", 1400)}")`,
+            }}
+          >
             <div className="contact-copy">
               <p className="eyebrow">Contact</p>
               <h2>Ready to turn the full herbal world into an immersive site?</h2>
